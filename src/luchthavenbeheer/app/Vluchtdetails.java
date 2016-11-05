@@ -1,4 +1,4 @@
-package sample.Programma;
+package luchthavenbeheer.app;
 
 public class Vluchtdetails
 {
