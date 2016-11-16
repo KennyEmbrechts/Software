@@ -8,21 +8,22 @@
 <?import javafx.scene.text.Font?>
 
 <Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8.0.76-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="luchthavenbeheer.app.Controllers.CheckInCtrl">
+
    <children>
-      <TextField layoutX="32.0" layoutY="98.0" promptText="TicketNr" />
+      <TextField fx:id="TicketNr" layoutX="32.0" layoutY="98.0" promptText="TicketNr" />
       <Label layoutX="203.0" layoutY="21.0" text="Inchecken">
          <font>
             <Font name="System Bold" size="34.0" />
          </font>
       </Label>
-      <Button layoutX="398.0" layoutY="98.0" mnemonicParsing="false" text="Zoeken" />
-      <Pane layoutX="-1.0" layoutY="130.0" prefHeight="270.0" prefWidth="600.0">
+      <Button fx:id="ZoekBtn" layoutX="398.0" layoutY="98.0" mnemonicParsing="false" text="Zoeken" />
+      <Pane fx:id="IncheckPane" layoutX="-1.0" layoutY="130.0" prefHeight="270.0" prefWidth="600.0">
          <children>
-            <ListView layoutX="14.0" layoutY="23.0" prefHeight="110.0" prefWidth="200.0" />
-            <TextField layoutX="346.0" layoutY="23.0" promptText="Naam" />
-            <Button layoutX="354.0" layoutY="107.0" mnemonicParsing="false" text="Bagage inchecken" />
-            <Label layoutX="404.0" layoutY="70.0" text="TicketNr" />
-            <Button layoutX="269.0" layoutY="192.0" mnemonicParsing="false" text="Inchecken" />
+            <ListView fx:id="Details" layoutX="14.0" layoutY="23.0" prefHeight="110.0" prefWidth="200.0" />
+            <TextField fx:id="Naam" layoutX="346.0" layoutY="23.0" promptText="Naam" />
+            <Button fx:id="BagageIncheckBtn" layoutX="354.0" layoutY="107.0" mnemonicParsing="false" text="Bagage inchecken" />
+            <Label fx:id="TicketNrLbl" layoutX="404.0" layoutY="70.0" text="TicketNr" />
+            <Button fx:id="IncheckBtn" layoutX="269.0" layoutY="192.0" mnemonicParsing="false" text="Inchecken" />
          </children>
       </Pane>
    </children>
