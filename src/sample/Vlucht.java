@@ -1,14 +1,18 @@
 package sample;
 
 
-import java.util.List;
 
-public class Vlucht
+
+public class Vluchtdetails
 {
-	private List passagiers;
-	private List<Integer> VluchtNr;
-	private List<Integer> BagageNr;
-	public void IsComplete()
+	public Locatie Herkomst;
+	public Locatie Besteming;
+	public int VluchtNr;
+	public public int uurVertrek;
+	public public int uurAankomst;
+	public private String Piloot;
+	public private int VliegtuigNr;
+	public void ToonDetails()
 	{
 	}
 }
