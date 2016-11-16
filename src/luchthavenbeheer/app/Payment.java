@@ -3,7 +3,7 @@ package luchthavenbeheer.app;
 
 
 
-public class Betaling
+public class Payment
 {
 	public void Betalen()
 	{

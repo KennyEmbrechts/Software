@@ -13,7 +13,7 @@ import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.stage.Stage;
 
-public class StartPaginaCtrl implements Initializable {
+public class HomePageCtrl implements Initializable {
 
     @FXML
     private Button KoopTicketKnop;
@@ -35,7 +35,7 @@ public class StartPaginaCtrl implements Initializable {
         //get reference to the button's stage
         stage=(Stage) KoopTicketKnop.getScene().getWindow();
         //load up OTHER FXML document
-        root = FXMLLoader.load(getClass().getResource("/luchthavenbeheer/app/View/TicketKopen.fxml"));
+        root = FXMLLoader.load(getClass().getResource("/luchthavenbeheer/app/View/BuyTicket.fxml"));
 
         Scene scene = new Scene(root);
         stage.setScene(scene);
@@ -50,7 +50,7 @@ public class StartPaginaCtrl implements Initializable {
         //get reference to the button's stage
         stage=(Stage) IncheckKnop.getScene().getWindow();
         //load up OTHER FXML document
-        root = FXMLLoader.load(getClass().getResource("/luchthavenbeheer/app/View/Inchecken.fxml"));
+        root = FXMLLoader.load(getClass().getResource("/luchthavenbeheer/app/View/CheckIn.fxml"));
 
         Scene scene = new Scene(root);
         stage.setScene(scene);

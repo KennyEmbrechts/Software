@@ -3,7 +3,7 @@ package luchthavenbeheer.app;
 
 
 
-public class Personeel
+public class Personel
 {
 	public void ControleerTicket()
 	{

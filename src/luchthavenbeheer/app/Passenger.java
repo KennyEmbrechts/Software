@@ -3,7 +3,7 @@ package luchthavenbeheer.app;
 
 
 
-public class Passagier
+public class Passenger
 {
 	public Boolean heeftBagage;
 	public Boolean isIngechecket;

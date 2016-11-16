@@ -2,7 +2,7 @@ package luchthavenbeheer.app;
 
 
 
-public class Vliegtuig
+public class Plane
 {
 	private int Bagage[];
 	public void Vlieg()

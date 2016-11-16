@@ -3,7 +3,7 @@ package luchthavenbeheer.app;
 
 import java.util.List;
 
-public class Vlucht
+public class Flight
 {
 	private List passagiers;
 	private List<Integer> VluchtNr;

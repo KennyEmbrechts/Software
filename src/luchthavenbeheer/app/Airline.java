@@ -3,6 +3,6 @@ package luchthavenbeheer.app;
 
 
 
-public class Maatschapij {
+public class Airline {
 	private String NaamMaatschapij;
 }

@@ -3,7 +3,7 @@ package luchthavenbeheer.app;
 
 
 
-public class Bagage
+public class Luggage
 {
 	public int BagageNr;
 	public int TicketNr;

@@ -1,6 +1,6 @@
 package luchthavenbeheer.app;
 
-public class Vluchtdetails
+public class FlightDetails
 {
 	//public Locatie Herkomst;
 	//public Locatie Besteming;
