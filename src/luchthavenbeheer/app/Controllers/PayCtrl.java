@@ -14,35 +14,28 @@ import java.util.ResourceBundle;
 /**
  * Created by jente on 5/11/16.
  */
-public class PayCtrl  implements Initializable {
+public class PayCtrl implements Initializable{
     @FXML
-    private Button ZoekBtn;
+    private Button PayBtn;
     @FXML
-    private Button BagageIncheckBtn;
+    private Label PriceLbl;
     @FXML
-    private Button IncheckBtn;
+    private TextField Name;
     @FXML
-    private Label TicketNrLbl;
+    private TextField FirstName;
     @FXML
-    private TextField TicketNr;
+    private TextField AccountNr;
     @FXML
-    private TextField Naam;
-    @FXML
-    private ListView Details;
-    @FXML
-    private Pane IncheckPane;
-
-
+    private TextField SecurityNr;
 
     @Override
-    public void initialize(URL fxmlFileLocation, ResourceBundle resources){
-        assert ZoekBtn != null : "fx:id=\"ZoekIncheckBtn\" was not injected: check your FXML file 'simple.fxml'.";
-        assert BagageIncheckBtn != null : "fx:id=\"BagageIncheckenBtn\" was not injected: check your FXML file 'simple.fxml'.";
-        assert IncheckBtn != null : "fx:id=\"IncheckBtn\" was not injected: check your FXML file 'simple.fxml'.";
-        assert TicketNrLbl != null : "fx:id=\"TicketNrLbl\" was not injected: check your FXML file 'simple.fxml'.";
-        assert TicketNr != null : "fx:id=\"TicketNr\" was not injected: check your FXML file 'simple.fxml'.";
-        assert Naam != null : "fx:id=\"Naam\" was not injected: check your FXML file 'simple.fxml'.";
-        assert Details != null : "fx:id=\"Details\" was not injected: check your FXML file 'simple.fxml'.";
-        assert IncheckPane != null : "fx:id=\"IncheckPane\" was not injected: check your FXML file 'simple.fxml'.";
+    public void initialize(URL fxmlFileLocation, ResourceBundle resources) {
+        assert PayBtn != null : "fx:id=\"PayBtn\" was not injected: check your FXML file 'simple.fxml'.";
+        assert PriceLbl != null : "fx:id=\"PriceLbl\" was not injected: check your FXML file 'simple.fxml'.";
+        assert Name != null : "fx:id=\"Name\" was not injected: check your FXML file 'simple.fxml'.";
+        assert FirstName != null : "fx:id=\"FirstName\" was not injected: check your FXML file 'simple.fxml'.";
+        assert AccountNr != null : "fx:id=\"AccountNr\" was not injected: check your FXML file 'simple.fxml'.";
+        assert SecurityNr != null : "fx:id=\"SecurityNr\" was not injected: check your FXML file 'simple.fxml'.";
     }
+
 }

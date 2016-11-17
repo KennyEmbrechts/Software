@@ -16,24 +16,24 @@ import javafx.stage.Stage;
 public class HomePageCtrl implements Initializable {
 
     @FXML
-    private Button KoopTicketKnop;
+    private Button BuyTicketBtn;
     @FXML
-    private Button IncheckKnop;
+    private Button CheckInBtn;
 
 
     @Override
     public void initialize(URL fxmlFileLocation, ResourceBundle resources){
-        assert KoopTicketKnop != null : "fx:id=\"KoopTicketKnop\" was not injected: check your FXML file 'simple.fxml'.";
-        assert IncheckKnop != null : "fx:id=\"IncheckKnop\" was not injected: check your FXML file 'simple.fxml'.";
+        assert BuyTicketBtn != null : "fx:id=\"BuyTicketBtn\" was not injected: check your FXML file 'simple.fxml'.";
+        assert CheckInBtn != null : "fx:id=\"CheckInBtn\" was not injected: check your FXML file 'simple.fxml'.";
     }
 
     @FXML
-    private void KoopTicketKnopgeklikt (ActionEvent event) throws IOException
+    private void ClickedBuyTicketBtn (ActionEvent event) throws IOException
     {
         Stage stage;
         Parent root;
         //get reference to the button's stage
-        stage=(Stage) KoopTicketKnop.getScene().getWindow();
+        stage=(Stage) BuyTicketBtn.getScene().getWindow();
         //load up OTHER FXML document
         root = FXMLLoader.load(getClass().getResource("/luchthavenbeheer/app/View/BuyTicket.fxml"));
 
@@ -43,12 +43,12 @@ public class HomePageCtrl implements Initializable {
     }
 
     @FXML
-    private void IncheckKnopgeklikt (ActionEvent event) throws IOException
+    private void ClickedCheckInBtn (ActionEvent event) throws IOException
     {
         Stage stage;
         Parent root;
         //get reference to the button's stage
-        stage=(Stage) IncheckKnop.getScene().getWindow();
+        stage=(Stage) CheckInBtn.getScene().getWindow();
         //load up OTHER FXML document
         root = FXMLLoader.load(getClass().getResource("/luchthavenbeheer/app/View/CheckIn.fxml"));
 
