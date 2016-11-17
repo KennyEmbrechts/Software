@@ -18,7 +18,7 @@ public class CheckInCtrl implements Initializable {
     @FXML
     private Button SearchBtn;
     @FXML
-    private Button BagageCheckInBtn;
+    private Button LuggageCheckInBtn;
     @FXML
     private Button CheckInBtn;
     @FXML
@@ -37,7 +37,7 @@ public class CheckInCtrl implements Initializable {
     @Override
     public void initialize(URL fxmlFileLocation, ResourceBundle resources){
         assert SearchBtn != null : "fx:id=\"ZoekIncheckBtn\" was not injected: check your FXML file 'simple.fxml'.";
-        assert BagageCheckInBtn != null : "fx:id=\"BagageIncheckenBtn\" was not injected: check your FXML file 'simple.fxml'.";
+        assert LuggageCheckInBtn != null : "fx:id=\"LuggageIncheckenBtn\" was not injected: check your FXML file 'simple.fxml'.";
         assert CheckInBtn != null : "fx:id=\"IncheckBtn\" was not injected: check your FXML file 'simple.fxml'.";
         assert TicketNrLbl != null : "fx:id=\"TicketNrLbl\" was not injected: check your FXML file 'simple.fxml'.";
         assert TicketNr != null : "fx:id=\"TicketNr\" was not injected: check your FXML file 'simple.fxml'.";

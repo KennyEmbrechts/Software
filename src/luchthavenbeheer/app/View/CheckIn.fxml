@@ -21,7 +21,7 @@
          <children>
             <ListView fx:id="Details" layoutX="14.0" layoutY="23.0" prefHeight="110.0" prefWidth="200.0" />
             <TextField fx:id="Name" layoutX="346.0" layoutY="23.0" promptText="Naam" />
-            <Button fx:id="BagageCheckInBtn" layoutX="354.0" layoutY="107.0" mnemonicParsing="false" text="Bagage inchecken" />
+            <Button fx:id="LuggageCheckInBtn" layoutX="354.0" layoutY="107.0" mnemonicParsing="false" text="Bagage inchecken" />
             <Label fx:id="TicketNrLbl" layoutX="404.0" layoutY="70.0" text="TicketNr" />
             <Button fx:id="CheckInBtn" layoutX="269.0" layoutY="192.0" mnemonicParsing="false" text="Inchecken" />
          </children>
