@@ -18,8 +18,8 @@ public class Main extends Application {
 
 
     public static void main(String[] args) {
+        DAO dao = new DAO();
+
         launch(args);
-
-
     }
 }
