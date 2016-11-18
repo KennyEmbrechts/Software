@@ -5,6 +5,11 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
+import luchthavenbeheer.app.FlightDetails;
+
+import java.time.LocalDate;
+import java.time.LocalDateTime;
+import java.time.LocalTime;
 
 public class Main extends Application {
 
@@ -18,7 +23,12 @@ public class Main extends Application {
 
 
     public static void main(String[] args) {
+
         DAO dao = new DAO();
+        FlightDetails details = new FlightDetails(FlightDetails.Location.Athene, FlightDetails.Location.Brussel, 1574, LocalDateTime.of(16,12,13,20,15), LocalDateTime.of(16,12,23,19,20), "Jan", 5987);
+        dao.CreateFlightDetails(details);
+        FlightDetails details1 = dao.getFlightDetails(1574);
+        System.out.println(details1.FlightNr);
 
         launch(args);
     }

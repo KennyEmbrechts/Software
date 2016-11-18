@@ -2,11 +2,17 @@ package luchthavenbeheer;
 
 import com.couchbase.lite.*;
 
+import com.couchbase.lite.util.Log;
+import luchthavenbeheer.app.FlightDetails;
+
 import java.io.IOException;
+import java.time.LocalDateTime;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+
+import static com.couchbase.lite.Document.TAG;
 
 /**
  * Created by Jente on 17/11/2016.
@@ -14,10 +20,10 @@ import java.util.logging.Logger;
 public class DAO {
     private Database database = null;
     private Manager manager = null;
+    private Document document = null;
+
     public DAO()
     {
-        Logger log = Logger.getLogger("app");
-        log.setLevel(Level.ALL);
         JavaContext context = new JavaContext();
 
         try {
@@ -35,23 +41,42 @@ public class DAO {
         {
             e.printStackTrace();
         }
+    }
 
-        // The properties that will be saved on the document
-        Map<String, Object> properties = new HashMap<String, Object>();
-        properties.put("title", "Couchbase Mobile");
-        properties.put("sdk", "Java");
-
-        Document document = database.createDocument();
+    public Boolean CreateFlightDetails(FlightDetails details)
+    {
+        Map<String, Object> properties = new HashMap<>();
+        properties.put("FlightFrom", details.FlyFrom);
+        properties.put("FlightTo", details.FlyTo);
+        properties.put("LeaveHour", details.LeaveHour.toString());
+        properties.put("ArrivalHour", details.ArrivalHour.toString());
+        properties.put("Pilot", details.Pilot);
+        properties.put("AirplaneNr", details.AirplaneNr);
+        document = database.getDocument(String.valueOf(details.FlightNr));
 
         try {
             document.putProperties(properties);
-        } catch (CouchbaseLiteException e) {
-            e.printStackTrace();
+            return true;
         }
-
-        log.info(String.format("Document ID :: %s", document.getId()));
-        log.info(String.format("Learning %s with %s", (String) document.getProperty("title"), (String) document.getProperty("sdk")));
+        catch (CouchbaseLiteException e)
+        {
+            Log.e(TAG, "Cannot save document", e);
+            return false;
+        }
     }
 
+    public FlightDetails getFlightDetails(int flightNr)
+    {
+        document = database.getDocument(String.valueOf(flightNr));
+        FlightDetails.Location FlightFrom = FlightDetails.Location.valueOf((String)document.getProperty("FlightFrom"));
+        FlightDetails.Location FlightTo = FlightDetails.Location.valueOf((String)document.getProperty("FlightTo"));
+        LocalDateTime LeaveHour = LocalDateTime.parse((String)document.getProperty("LeaveHour"));
+        LocalDateTime ArrivalHour = LocalDateTime.parse((String)document.getProperty("ArrivalHour"));
+        String Pilot = (String)document.getProperty("Pilot");
+        int AirplaneNr = (int)document.getProperty("AirplaneNr");
 
+        FlightDetails flightDetails = new FlightDetails(FlightFrom,FlightTo, flightNr,
+                LeaveHour, ArrivalHour, Pilot, AirplaneNr);
+        return flightDetails;
+    }
 }

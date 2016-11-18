@@ -14,8 +14,8 @@ public class FlightDetails
 	public  int FlightNr;
 	public LocalDateTime LeaveHour;
 	public LocalDateTime ArrivalHour;
-	private String Pilot;
-	private int AirplaneNr;
+	public String Pilot;
+	public int AirplaneNr;
 
     public FlightDetails(Location FlyFrom, Location FlyTo, int FlightNr, LocalDateTime LeaveHour, LocalDateTime ArrivalHour, String Pilot, int AirplaneNr)
     {
