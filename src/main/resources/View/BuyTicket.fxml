@@ -9,7 +9,7 @@
 
 <Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8.0.112-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="luchthavenbeheer.app.Controllers.BuyTicketCtrl">
    <children>
-      <ListView fx:id="ListTickets" layoutX="14.0" layoutY="81.0" prefHeight="200.0" prefWidth="200.0" />
+      <ListView fx:id="ListTickets" layoutX="14.0" layoutY="81.0" onMouseClicked="#OnItemClicked" prefHeight="200.0" prefWidth="200.0" />
       <ListView fx:id="ListDetails" layoutX="241.0" layoutY="81.0" prefHeight="200.0" prefWidth="200.0" />
       <Label layoutX="241.0" layoutY="299.0" text="Totale prijs" />
       <TextField fx:id="Persons" layoutX="14.0" layoutY="294.0" promptText="Aantal personen" />

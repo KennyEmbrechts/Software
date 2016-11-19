@@ -50,7 +50,7 @@ public class DAO {
         properties.put("ArrivalHour", details.ArrivalHour.toString());
         properties.put("Pilot", details.Pilot);
         properties.put("AirplaneNr", details.AirplaneNr);
-        document = database.createDocument();
+        document = database.getDocument(String.valueOf(details.FlightNr));
 
         try {
             document.putProperties(properties);
@@ -109,7 +109,7 @@ public class DAO {
             document = database.getDocument(String.valueOf(row.getDocumentId()));
             String type = (String)document.getProperty("type");
             if(type.equals("FlightDetails"))
-                Log.e("Results: ", document.getProperties().toString());
+                details.add(CastDocumentToFlightDetails(document));
         }
         return details;
     }
