@@ -1,17 +1,12 @@
 package luchthavenbeheer;
 
 import com.couchbase.lite.*;
-
 import com.couchbase.lite.util.Log;
 import luchthavenbeheer.app.FlightDetails;
-
 import java.io.IOException;
 import java.time.LocalDateTime;
-import java.util.HashMap;
-import java.util.Iterator;
-import java.util.Map;
-import java.util.logging.Level;
-import java.util.logging.Logger;
+import java.util.*;
+import java.util.List;
 
 import static com.couchbase.lite.Document.TAG;
 
@@ -47,13 +42,15 @@ public class DAO {
     public Boolean CreateFlightDetails(FlightDetails details)
     {
         Map<String, Object> properties = new HashMap<>();
+        properties.put("type", "FlightDetails");
+        properties.put("FlightNr", details.FlightNr);
         properties.put("FlightFrom", details.FlyFrom);
         properties.put("FlightTo", details.FlyTo);
         properties.put("LeaveHour", details.LeaveHour.toString());
         properties.put("ArrivalHour", details.ArrivalHour.toString());
         properties.put("Pilot", details.Pilot);
         properties.put("AirplaneNr", details.AirplaneNr);
-        document = database.getDocument(String.valueOf(details.FlightNr));
+        document = database.createDocument();
 
         try {
             document.putProperties(properties);
@@ -69,15 +66,9 @@ public class DAO {
     public FlightDetails getFlightDetails(int flightNr)
     {
         document = database.getDocument(String.valueOf(flightNr));
-        FlightDetails.Location FlightFrom = FlightDetails.Location.valueOf((String)document.getProperty("FlightFrom"));
-        FlightDetails.Location FlightTo = FlightDetails.Location.valueOf((String)document.getProperty("FlightTo"));
-        LocalDateTime LeaveHour = LocalDateTime.parse((String)document.getProperty("LeaveHour"));
-        LocalDateTime ArrivalHour = LocalDateTime.parse((String)document.getProperty("ArrivalHour"));
-        String Pilot = (String)document.getProperty("Pilot");
-        int AirplaneNr = (int)document.getProperty("AirplaneNr");
 
-        FlightDetails flightDetails = new FlightDetails(FlightFrom,FlightTo, flightNr,
-                LeaveHour, ArrivalHour, Pilot, AirplaneNr);
+        FlightDetails flightDetails = CastDocumentToFlightDetails(document);
+
         return flightDetails;
     }
     public void getAll()
@@ -98,7 +89,43 @@ public class DAO {
             document = database.getDocument(String.valueOf(row.getDocumentId()));
             Log.w("Results: ", document.getProperties().toString());
         }
+    }
+    public List<FlightDetails> getAllFlightDetails()
+    {
+        List<FlightDetails> details = new ArrayList<>();
+        Query query = database.createAllDocumentsQuery();
+        query.setAllDocsMode(Query.AllDocsMode.ALL_DOCS);
+        QueryEnumerator result = null;
+        try {
+            result = query.run();
+        }
+        catch (CouchbaseLiteException e)
+        {
+            Log.e(TAG, "Cannot execute query", e);
+        }
+        for(Iterator<QueryRow> it = result; it.hasNext();)
+        {
+            QueryRow row = it.next();
+            document = database.getDocument(String.valueOf(row.getDocumentId()));
+            String type = (String)document.getProperty("type");
+            if(type.equals("FlightDetails"))
+                Log.e("Results: ", document.getProperties().toString());
+        }
+        return details;
+    }
 
+    public FlightDetails CastDocumentToFlightDetails(Document document)
+    {
+        FlightDetails.Location FlightFrom = FlightDetails.Location.valueOf((String)document.getProperty("FlightFrom"));
+        FlightDetails.Location FlightTo = FlightDetails.Location.valueOf((String)document.getProperty("FlightTo"));
+        LocalDateTime LeaveHour = LocalDateTime.parse((String)document.getProperty("LeaveHour"));
+        LocalDateTime ArrivalHour = LocalDateTime.parse((String)document.getProperty("ArrivalHour"));
+        String Pilot = (String)document.getProperty("Pilot");
+        int AirplaneNr = (int)document.getProperty("AirplaneNr");
+        int flightNr = (int)document.getProperty("FlightNr");
 
+        FlightDetails flightDetails = new FlightDetails(FlightFrom,FlightTo, flightNr,
+                LeaveHour, ArrivalHour, Pilot, AirplaneNr);
+        return flightDetails;
     }
 }

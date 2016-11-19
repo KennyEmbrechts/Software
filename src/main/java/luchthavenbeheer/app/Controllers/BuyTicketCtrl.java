@@ -21,19 +21,20 @@ public class BuyTicketCtrl implements Initializable {
     private TextField Luggage;
 
     @FXML
-    private ListView Flights;
+    private ListView ListTickets;
 
     @FXML
-    private ListView FlightDetails;
+    private ListView ListDetails;
 
     @Override
     public void initialize(URL fxmlFileLocation, ResourceBundle resources){
         assert BookTicket != null : "fx:id=\"TicketBoekenKnop\" was not injected: check your FXML file 'simple.fxml'.";
         assert Persons != null : "fx:id=\"PersonenTextField\" was not injected: check your FXML file 'simple.fxml'.";
         assert Luggage != null : "fx:id=\"BagageTextField\" was not injected: check your FXML file 'simple.fxml'.";
-        assert Flights  != null : "fx:id=\"VluchtenListView\" was not injected: check your FXML file 'simple.fxml'.";
-        assert FlightDetails != null : "fx:id=\"VluchtDetailsListView\" was not injected: check your FXML file 'simple.fxml'.";
-
+        assert ListTickets  != null : "fx:id=\"ListTickets\" was not injected: check your FXML file 'simple.fxml'.";
+        assert ListDetails != null : "fx:id=\"ListDetails\" was not injected: check your FXML file 'simple.fxml'.";
     }
+
+
 
 }
