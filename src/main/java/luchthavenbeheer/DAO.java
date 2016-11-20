@@ -68,8 +68,6 @@ public class DAO {
     public FlightDetails getFlightDetails(int flightNr)
     {
         document = database.getDocument(String.valueOf(flightNr));
-
-
         flightDetails = flightDetails.CastDocumentToFlightDetails(document);
 
         return flightDetails;

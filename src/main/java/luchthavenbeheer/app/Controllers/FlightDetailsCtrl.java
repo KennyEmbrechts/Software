@@ -69,7 +69,7 @@ public class FlightDetailsCtrl implements Initializable {
             System.out.println(detail.FlightNr);
             if(String.valueOf(detail.FlightNr).equals(value)) {
                 oDetails.add("Flightnumber: "+String.valueOf(detail.FlightNr));
-                oDetails.add("Coming back from: "+String.valueOf(detail.FlyFrom));
+                oDetails.add("Coming from: "+String.valueOf(detail.FlyFrom));
                 oDetails.add("Arriving at: "+String.valueOf(detail.FlyTo)+" at "+ detail.ArrivalHour);
             }
         }
