@@ -16,9 +16,6 @@ import java.net.URL;
 import java.util.ResourceBundle;
 import java.util.regex.Pattern;
 
-/**
- * Created by jente on 5/11/16.
- */
 public class PayCtrl implements Initializable {
     @FXML
     private Button PayBtn;
@@ -126,7 +123,7 @@ public class PayCtrl implements Initializable {
         //get reference to the button's stage
         stage=(Stage) btnBack.getScene().getWindow();
         //load up OTHER FXML document
-        root = FXMLLoader.load(getClass().getResource("/View/HomePage.fxml"));
+        root = FXMLLoader.load(getClass().getResource("/View/BuyTicket.fxml"));
 
         Scene scene = new Scene(root);
         stage.setScene(scene);

@@ -4,7 +4,6 @@ import com.couchbase.lite.*;
 import com.couchbase.lite.util.Log;
 import luchthavenbeheer.app.FlightDetails;
 import java.io.IOException;
-import java.time.LocalDateTime;
 import java.util.*;
 import java.util.List;
 

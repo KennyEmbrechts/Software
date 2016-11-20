@@ -1,8 +1,6 @@
 package luchthavenbeheer.app;
 
 
-import javax.print.attribute.standard.MediaSize;
-
 public class Passenger
 {
 	public Boolean HasLuggage;

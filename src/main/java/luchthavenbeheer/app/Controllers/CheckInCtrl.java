@@ -12,14 +12,11 @@ import javafx.scene.control.ListView;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.Pane;
 import javafx.stage.Stage;
-
 import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
 
-/**
- * Created by jente on 5/11/16.
- */
+
 public class CheckInCtrl implements Initializable {
     @FXML
     private Button SearchBtn;
