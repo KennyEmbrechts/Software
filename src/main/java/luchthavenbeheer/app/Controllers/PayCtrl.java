@@ -1,20 +1,19 @@
 package luchthavenbeheer.app.Controllers;
 
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
-import javafx.scene.control.Button;
-import javafx.scene.control.Label;
-import javafx.scene.control.ListView;
-import javafx.scene.control.TextField;
-import javafx.scene.layout.Pane;
+import javafx.scene.control.*;
 
+import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
+import java.util.regex.Pattern;
 
 /**
  * Created by jente on 5/11/16.
  */
-public class PayCtrl implements Initializable{
+public class PayCtrl implements Initializable {
     @FXML
     private Button PayBtn;
     @FXML
@@ -38,5 +37,35 @@ public class PayCtrl implements Initializable{
         assert SecurityNr != null : "fx:id=\"SecurityNr\" was not injected: check your FXML file 'simple.fxml'.";
     }
 
+    @FXML
+    private void NameEntered(ActionEvent event) throws IOException {
+        if (Pattern.matches(Regex.Regexs.Name.toString(), Name.getText())) ;
+        {
+            System.out.println(true);
+        }
+    }
 
+    @FXML
+    private void FirstNameEntered(ActionEvent event) throws IOException {
+        if (Pattern.matches(Regex.Regexs.Name.toString(), FirstName.getText())) ;
+        {
+            System.out.println(true);
+        }
+    }
+
+    @FXML
+    private void BankAccountEntered(ActionEvent event) throws IOException {
+        if (Pattern.matches(Regex.Regexs.AccountNr.toString(), AccountNr.getText())) ;
+        {
+            System.out.println(true);
+        }
+    }
+
+    @FXML
+    private void SafetyNrEntered(ActionEvent event) throws IOException {
+        if (Pattern.matches(Regex.Regexs.FourDigitNr.toString(), AccountNr.getText())) ;
+        {
+            System.out.println(true);
+        }
+    }
 }
