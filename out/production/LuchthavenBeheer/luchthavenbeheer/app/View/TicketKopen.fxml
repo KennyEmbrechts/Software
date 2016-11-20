@@ -7,15 +7,15 @@
 <?import javafx.scene.layout.Pane?>
 <?import javafx.scene.text.Font?>
 
-<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8.0.76-ea" xmlns:fx="http://javafx.com/fxml/1">
+<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8.0.112-ea" xmlns:fx="http://javafx.com/fxml/1">
    <children>
-      <ListView layoutX="14.0" layoutY="81.0" prefHeight="200.0" prefWidth="200.0" />
-      <ListView layoutX="241.0" layoutY="81.0" prefHeight="200.0" prefWidth="200.0" />
-      <Label layoutX="241.0" layoutY="299.0" text="Totale prijs" />
-      <TextField layoutX="14.0" layoutY="294.0" promptText="Aantal personen" />
-      <TextField layoutX="14.0" layoutY="326.0" promptText="Aantal bagage" />
-      <Button layoutX="241.0" layoutY="326.0" mnemonicParsing="false" text="Boeken" />
-      <Label layoutX="229.0" layoutY="26.0" text="Boeken">
+      <ListView fx:id="Tickets" layoutX="14.0" layoutY="81.0" prefHeight="200.0" prefWidth="200.0" />
+      <ListView fx:id="Details" layoutX="241.0" layoutY="81.0" prefHeight="200.0" prefWidth="200.0" />
+      <Label fx:id="Price" layoutX="241.0" layoutY="299.0" prefHeight="8.0" prefWidth="68.0" text="Totale prijs" />
+      <TextField fx:id="Persons" layoutX="14.0" layoutY="294.0" promptText="# persons" />
+      <TextField fx:id="Luggage" layoutX="14.0" layoutY="326.0" promptText="# Luggage" />
+      <Button fx:id="Book" layoutX="241.0" layoutY="326.0" mnemonicParsing="false" text="Book" />
+      <Label fx:id="lblBook" layoutX="229.0" layoutY="26.0" text="Book">
          <font>
             <Font name="System Bold" size="34.0" />
          </font>
