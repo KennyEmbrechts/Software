@@ -1,6 +1,7 @@
 package luchthavenbeheer.app.Controllers;
 
 import javafx.event.ActionEvent;
+import javafx.event.Event;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.*;
@@ -49,15 +50,15 @@ public class PayCtrl implements Initializable {
     private void FirstNameEntered(ActionEvent event) throws IOException {
         if (Pattern.matches(Regex.Regexs.Name.toString(), FirstName.getText())) ;
         {
-            System.out.println(true);
+            System.out.println("true");
         }
     }
 
     @FXML
-    private void BankAccountEntered(ActionEvent event) throws IOException {
+    private void BankAccountEntered(Event event) throws IOException {
         if (Pattern.matches(Regex.Regexs.AccountNr.toString(), AccountNr.getText())) ;
         {
-            System.out.println(true);
+            System.out.println("true");
         }
     }
 
@@ -65,7 +66,15 @@ public class PayCtrl implements Initializable {
     private void SafetyNrEntered(ActionEvent event) throws IOException {
         if (Pattern.matches(Regex.Regexs.FourDigitNr.toString(), AccountNr.getText())) ;
         {
-            System.out.println(true);
+            System.out.println("true");
+        }
+    }
+
+    @FXML
+    private void PayBtnClicked(ActionEvent event) throws IOException {
+        if (Pattern.matches(Regex.Regexs.FourDigitNr.toString(), AccountNr.getText())) ;
+        {
+            System.out.println("true");
         }
     }
 }
