@@ -14,7 +14,7 @@
             <Font name="System Bold" size="34.0" />
          </font>
       </Label>
-      <TextField fx:id="FlightNr" layoutX="19.0" layoutY="98.0" promptText="VluchtNr" />
+      <TextField fx:id="FlightNumber" layoutX="19.0" layoutY="98.0" promptText="VluchtNr" />
       <Button fx:id="btnSearch" onAction="#ClickSearchBtn" layoutX="533.0" layoutY="98.0" mnemonicParsing="false" text="Search" />
       <ListView fx:id="lstDetails" layoutX="19.0" layoutY="149.0" prefHeight="237.0" prefWidth="565.0" />
       <Button fx:id="btnBack" onAction="#ClickedBackBtn" layoutX="19.0" layoutY="32.0" mnemonicParsing="false"  text="Back" />

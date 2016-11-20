@@ -30,7 +30,7 @@ public class FlightDetailsCtrl implements Initializable {
     @FXML
     private Button btnSearch;
     @FXML
-    private TextField FlightNr;
+    private TextField FlightNumber;
     @FXML
     private ListView lstDetails;
 
@@ -38,7 +38,7 @@ public class FlightDetailsCtrl implements Initializable {
     public void initialize(URL fxmlFileLocation, ResourceBundle resources){
         assert btnBack != null : "fx:id=\"BackBtn\" was not injected: check your FXML file 'simple.fxml'.";
         assert btnSearch != null : "fx:id=\"SearchBtn\" was not injected: check your FXML file 'simple.fxml'.";
-        assert FlightNr != null : "fx:id=\"FlightNr\" was not injected: check your FXML file 'simple.fxml'.";
+        assert FlightNumber != null : "fx:id=\"FlightNr\" was not injected: check your FXML file 'simple.fxml'.";
         assert lstDetails != null : "fx:id=\"lstDetails\" was not injected: check your FXML file 'simple.fxml'.";
     }
 
@@ -63,9 +63,16 @@ public class FlightDetailsCtrl implements Initializable {
         DAO dao = new DAO();
         List<FlightDetails> details = dao.getAllFlightDetails();
         ObservableList<String> oDetails = FXCollections.observableArrayList();
+        String value = FlightNumber.getText();
+        System.out.println(value);
         for (FlightDetails detail: details) {
-            oDetails.add(String.valueOf(detail.FlightNr) + ": " + String.valueOf(detail.FlyFrom) + " - " + String.valueOf(detail.FlyTo));
+            System.out.println(detail.FlightNr);
+            if(String.valueOf(detail.FlightNr).equals(value)) {
+                oDetails.add(String.valueOf(detail.FlightNr) + ": " + String.valueOf(detail.FlyFrom) + " - " + String.valueOf(detail.FlyTo));
+                System.out.println("Check!");
+            }
         }
+
         lstDetails.setItems(oDetails);
     }
 }
