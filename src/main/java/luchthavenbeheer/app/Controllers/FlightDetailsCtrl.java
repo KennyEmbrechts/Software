@@ -42,7 +42,6 @@ public class FlightDetailsCtrl implements Initializable {
         assert FlightNumber != null : "fx:id=\"FlightNr\" was not injected: check your FXML file 'simple.fxml'.";
         assert lstDetails != null : "fx:id=\"lstDetails\" was not injected: check your FXML file 'simple.fxml'.";
     }
-
     @FXML
     private void ClickedBackBtn (ActionEvent event) throws IOException
     {
@@ -64,7 +63,6 @@ public class FlightDetailsCtrl implements Initializable {
         DAO dao = new DAO();
         ObservableList<String> oDetails = FXCollections.observableArrayList();
         String value = FlightNumber.getText();
-        System.out.println(value);
         FlightDetails detail = dao.getFlightDetails(Integer.valueOf(FlightNumber.getText()));
         oDetails.add("Flightnumber: "+String.valueOf(detail.FlightNr));
         oDetails.add("Coming from: "+String.valueOf(detail.FlyFrom));
