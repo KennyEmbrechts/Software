@@ -38,4 +38,5 @@ public class PayCtrl implements Initializable{
         assert SecurityNr != null : "fx:id=\"SecurityNr\" was not injected: check your FXML file 'simple.fxml'.";
     }
 
+
 }
