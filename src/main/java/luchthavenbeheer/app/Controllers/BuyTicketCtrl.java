@@ -27,6 +27,8 @@ public class BuyTicketCtrl implements Initializable {
     DAO dao = null;
     @FXML
     private Button BookTicket;
+    @FXML
+    private Button btnBack;
 
     @FXML
     private TextField Persons;
@@ -47,6 +49,7 @@ public class BuyTicketCtrl implements Initializable {
         assert Luggage != null : "fx:id=\"BagageTextField\" was not injected: check your FXML file 'simple.fxml'.";
         assert ListTickets  != null : "fx:id=\"ListTickets\" was not injected: check your FXML file 'simple.fxml'.";
         assert ListDetails != null : "fx:id=\"ListDetails\" was not injected: check your FXML file 'simple.fxml'.";
+        assert btnBack != null : "fx:id=\"BackBtn\" was not injected: check your FXML file 'simple.fxml'.";
         setData();
     }
 
@@ -83,6 +86,21 @@ public class BuyTicketCtrl implements Initializable {
         stage=(Stage) BookTicket.getScene().getWindow();
         //load up OTHER FXML document
         root = FXMLLoader.load(getClass().getResource("/View/Pay.fxml"));
+
+        Scene scene = new Scene(root);
+        stage.setScene(scene);
+        stage.show();
+    }
+
+    @FXML
+    private void ClickedBackBtn (ActionEvent event) throws IOException
+    {
+        Stage stage;
+        Parent root;
+        //get reference to the button's stage
+        stage=(Stage) btnBack.getScene().getWindow();
+        //load up OTHER FXML document
+        root = FXMLLoader.load(getClass().getResource("/View/HomePage.fxml"));
 
         Scene scene = new Scene(root);
         stage.setScene(scene);

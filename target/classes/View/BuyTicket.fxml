@@ -15,6 +15,7 @@
       <TextField fx:id="Persons" layoutX="14.0" layoutY="294.0" promptText="# Persons" />
       <TextField fx:id="Luggage" layoutX="14.0" layoutY="326.0" promptText="# luggage" />
       <Button fx:id="BookTicket" layoutX="241.0" layoutY="326.0" mnemonicParsing="false" onAction="#BookTicketClicked" text="Book" />
+      <Button fx:id="btnBack" onAction="#ClickedBackBtn" layoutX="19.0" layoutY="32.0" mnemonicParsing="false"  text="Back" />
       <Label layoutX="229.0" layoutY="26.0" text="Book">
          <font>
             <Font name="System Bold" size="34.0" />
