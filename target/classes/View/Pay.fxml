@@ -8,10 +8,10 @@
 
 <Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8.0.112-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="luchthavenbeheer.app.Controllers.PayCtrl">
    <children>
-      <TextField fx:id="Name" layoutX="215.0" layoutY="85.0" onInputMethodTextChanged="#NameEntered" promptText="Name" />
-      <TextField fx:id="FirstName" layoutX="215.0" layoutY="118.0" onInputMethodTextChanged="#FirstNameEntered" promptText="First name" />
-      <TextField fx:id="AccountNr" layoutX="215.0" layoutY="151.0" onInputMethodTextChanged="#BankAccountEntered" promptText="Bank account" />
-      <TextField fx:id="SecurityNr" layoutX="215.0" layoutY="187.0" onInputMethodTextChanged="#SafetyNrEntered" promptText="Safety nr." />
+      <TextField fx:id="Name" layoutX="215.0" layoutY="85.0" promptText="Name" />
+      <TextField fx:id="FirstName" layoutX="215.0" layoutY="118.0" promptText="First name" />
+      <TextField fx:id="AccountNr" layoutX="215.0" layoutY="151.0" promptText="Bank account" />
+      <TextField fx:id="SecurityNr" layoutX="215.0" layoutY="187.0" promptText="Safety nr." />
       <Button fx:id="PayBtn" layoutX="271.0" layoutY="245.0" mnemonicParsing="false" onAction="#PayBtnClicked" text="Pay" />
       <Label fx:id="PriceLbl" layoutX="264.0" layoutY="219.0" text="Totale prijs" />
       <Label layoutX="260.0" layoutY="35.0" text="Pay">
@@ -19,5 +19,10 @@
             <Font name="System Bold" size="34.0" />
          </font>
       </Label>
+      <Label fx:id="NameWarning" layoutX="389.0" layoutY="89.0" text="No valid name entered" textFill="RED" visible="false" />
+      <Label fx:id="FirstNameWarning" layoutX="389.0" layoutY="122.0" text="No valid name entered" textFill="RED" visible="false" />
+      <Label fx:id="AccountWarning" layoutX="389.0" layoutY="155.0" text="No valid account nr. entered" textFill="RED" visible="false" />
+      <Label fx:id="SecurityNrWarning" layoutX="389.0" layoutY="191.0" text="No valid security nr. entered" textFill="RED" visible="false" />
+      <Label fx:id="ButtonWarning" layoutX="336.0" layoutY="249.0" text="One or more fields are empty" textFill="RED" visible="false" />
    </children>
 </Pane>

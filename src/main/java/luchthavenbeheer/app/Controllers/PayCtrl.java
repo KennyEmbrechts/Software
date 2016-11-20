@@ -1,10 +1,15 @@
 package luchthavenbeheer.app.Controllers;
 
+import javafx.beans.value.ChangeListener;
+import javafx.beans.value.ObservableValue;
 import javafx.event.ActionEvent;
-import javafx.event.Event;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.*;
+import javafx.stage.Stage;
 
 import java.io.IOException;
 import java.net.URL;
@@ -27,6 +32,16 @@ public class PayCtrl implements Initializable {
     private TextField AccountNr;
     @FXML
     private TextField SecurityNr;
+    @FXML
+    private Label NameWarning;
+    @FXML
+    private Label FirstNameWarning;
+    @FXML
+    private Label AccountWarning;
+    @FXML
+    private Label SecurityNrWarning;
+    @FXML
+    private Label ButtonWarning;
 
     @Override
     public void initialize(URL fxmlFileLocation, ResourceBundle resources) {
@@ -36,45 +51,99 @@ public class PayCtrl implements Initializable {
         assert FirstName != null : "fx:id=\"FirstName\" was not injected: check your FXML file 'simple.fxml'.";
         assert AccountNr != null : "fx:id=\"AccountNr\" was not injected: check your FXML file 'simple.fxml'.";
         assert SecurityNr != null : "fx:id=\"SecurityNr\" was not injected: check your FXML file 'simple.fxml'.";
-    }
+        assert NameWarning != null : "fx:id=\"NameWarning\" was not injected: check your FXML file 'simple.fxml'.";
+        assert FirstNameWarning != null : "fx:id=\"FirstNameWarning\" was not injected: check your FXML file 'simple.fxml'.";
+        assert AccountWarning != null : "fx:id=\"AccountWarning\" was not injected: check your FXML file 'simple.fxml'.";
+        assert SecurityNrWarning != null : "fx:id=\"SecurityNrWarning\" was not injected: check your FXML file 'simple.fxml'.";
+        assert ButtonWarning != null : "fx:id=\"ButtonWarning\" was not injected: check your FXML file 'simple.fxml'.";
 
-    @FXML
-    private void NameEntered(ActionEvent event) throws IOException {
-        if (Pattern.matches(Regex.Regexs.Name.toString(), Name.getText())) ;
-        {
-            System.out.println(true);
-        }
-    }
+        // Listen for TextField text changes
+        Name.textProperty().addListener(new ChangeListener<String>() {
+            @Override
+            public void changed(ObservableValue<? extends String> observable, String oldValue, String newValue) {
 
-    @FXML
-    private void FirstNameEntered(ActionEvent event) throws IOException {
-        if (Pattern.matches(Regex.Regexs.Name.toString(), FirstName.getText())) ;
-        {
-            System.out.println("true");
-        }
-    }
+                if(CheckFieldValues(Regex.Regexs.Name,Name))
+                {
+                    NameWarning.setVisible(false);
+                }
+                else
+                {
+                    NameWarning.setVisible(true);
+                }
+            }
+        });
+        FirstName.textProperty().addListener(new ChangeListener<String>() {
+            @Override
+            public void changed(ObservableValue<? extends String> observable, String oldValue, String newValue) {
 
-    @FXML
-    private void BankAccountEntered(Event event) throws IOException {
-        if (Pattern.matches(Regex.Regexs.AccountNr.toString(), AccountNr.getText())) ;
-        {
-            System.out.println("true");
-        }
-    }
+                if(CheckFieldValues(Regex.Regexs.Name,FirstName))
+                {
+                    FirstNameWarning.setVisible(false);
+                }
+                else
+                {
+                    FirstNameWarning.setVisible(true);
+                }
+            }
+        });
+        AccountNr.textProperty().addListener(new ChangeListener<String>() {
+            @Override
+            public void changed(ObservableValue<? extends String> observable, String oldValue, String newValue) {
 
-    @FXML
-    private void SafetyNrEntered(ActionEvent event) throws IOException {
-        if (Pattern.matches(Regex.Regexs.FourDigitNr.toString(), AccountNr.getText())) ;
-        {
-            System.out.println("true");
-        }
+                if(CheckFieldValues(Regex.Regexs.AccountNr,AccountNr))
+                {
+                    AccountWarning.setVisible(false);
+                }
+                else
+                {
+                    AccountWarning.setVisible(true);
+                }
+            }
+        });
+        SecurityNr.textProperty().addListener(new ChangeListener<String>() {
+            @Override
+            public void changed(ObservableValue<? extends String> observable, String oldValue, String newValue) {
+
+                if(CheckFieldValues(Regex.Regexs.FourDigitNr,SecurityNr))
+                {
+                    SecurityNrWarning.setVisible(false);
+                }
+                else
+                {
+                    SecurityNrWarning.setVisible(true);
+                }
+            }
+        });
     }
 
     @FXML
     private void PayBtnClicked(ActionEvent event) throws IOException {
-        if (Pattern.matches(Regex.Regexs.FourDigitNr.toString(), AccountNr.getText())) ;
+        if (CheckFieldValues(Regex.Regexs.Name,Name) && CheckFieldValues(Regex.Regexs.Name,FirstName) && CheckFieldValues(Regex.Regexs.AccountNr,AccountNr) && CheckFieldValues(Regex.Regexs.FourDigitNr,SecurityNr))
         {
-            System.out.println("true");
+            ButtonWarning.setVisible(false);
+            Stage stage;
+            Parent root;
+            //get reference to the button's stage
+            stage=(Stage) PayBtn.getScene().getWindow();
+            //load up OTHER FXML document
+            root = FXMLLoader.load(getClass().getResource("/View/HomePage.fxml"));
+
+            Scene scene = new Scene(root);
+            stage.setScene(scene);
+            stage.show();
         }
+        else
+        {
+            ButtonWarning.setVisible(true);
+        }
+    }
+
+    public Boolean CheckFieldValues(Regex.Regexs reg, TextField txt)
+    {
+        if(Pattern.matches(reg.toString(), txt.getText()))
+        {
+            return true;
+        }
+        return false;
     }
 }
