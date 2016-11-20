@@ -42,6 +42,8 @@ public class BuyTicketCtrl implements Initializable {
     @FXML
     private ListView ListDetails;
 
+    private boolean HasBagage = false;
+
     @Override
     public void initialize(URL fxmlFileLocation, ResourceBundle resources){
         assert BookTicket != null : "fx:id=\"TicketBoekenKnop\" was not injected: check your FXML file 'simple.fxml'.";
@@ -88,16 +90,32 @@ public class BuyTicketCtrl implements Initializable {
         {
             if(Pattern.matches(Regex.Regexs.OneDigitNr.toString(), Luggage.getText()))
             {
-                Stage stage;
-                Parent root;
-                //get reference to the button's stage
-                stage=(Stage) BookTicket.getScene().getWindow();
-                //load up OTHER FXML document
-                root = FXMLLoader.load(getClass().getResource("/View/Pay.fxml"));
+                if(ListTickets.getSelectionModel().getSelectedIndex() > -1)
+                {
+                    Stage stage;
+                    Parent root;
+                    //get reference to the button's stage
+                    stage=(Stage) BookTicket.getScene().getWindow();
+                    //load up OTHER FXML document
+                    root = FXMLLoader.load(getClass().getResource("/View/Pay.fxml"));
+                    
+                    if(Integer.valueOf(Luggage.getText()) > 0)
+                        HasBagage = true;
+                    String[] FlightNr = ListTickets.getSelectionModel().selectedItemProperty().get().toString().split(":");
+                    String nrOfPersons = Persons.getText();
 
-                Scene scene = new Scene(root);
-                stage.setScene(scene);
-                stage.show();
+                    PayCtrl payCtrl = new PayCtrl();
+                    //payCtrl.setParams(HasBagage, Integer.getInteger(FlightNr[0]),Integer.getInteger(nrOfPersons));
+
+                    Scene scene = new Scene(root);
+                    stage.setScene(scene);
+                    stage.show();
+                }
+                else
+                {
+                    infoBox("Please inform us of your flight", "Flight Error Message","Flight information");
+                }
+
             }
             else
             {
