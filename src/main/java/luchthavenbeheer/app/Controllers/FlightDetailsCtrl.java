@@ -26,9 +26,9 @@ import java.util.ResourceBundle;
 public class FlightDetailsCtrl implements Initializable {
 
     @FXML
-    private Button BackBtn;
+    private Button btnBack;
     @FXML
-    private Button SearchBtn;
+    private Button btnSearch;
     @FXML
     private TextField FlightNr;
     @FXML
@@ -36,8 +36,8 @@ public class FlightDetailsCtrl implements Initializable {
 
     @Override
     public void initialize(URL fxmlFileLocation, ResourceBundle resources){
-        assert BackBtn != null : "fx:id=\"BackBtn\" was not injected: check your FXML file 'simple.fxml'.";
-        assert SearchBtn != null : "fx:id=\"SearchBtn\" was not injected: check your FXML file 'simple.fxml'.";
+        assert btnBack != null : "fx:id=\"BackBtn\" was not injected: check your FXML file 'simple.fxml'.";
+        assert btnSearch != null : "fx:id=\"SearchBtn\" was not injected: check your FXML file 'simple.fxml'.";
         assert FlightNr != null : "fx:id=\"FlightNr\" was not injected: check your FXML file 'simple.fxml'.";
         assert lstDetails != null : "fx:id=\"lstDetails\" was not injected: check your FXML file 'simple.fxml'.";
     }
@@ -48,9 +48,9 @@ public class FlightDetailsCtrl implements Initializable {
         Stage stage;
         Parent root;
         //get reference to the button's stage
-        stage=(Stage) BackBtn.getScene().getWindow();
+        stage=(Stage) btnBack.getScene().getWindow();
         //load up OTHER FXML document
-        root = FXMLLoader.load(getClass().getResource("/luchthavenbeheer/app/View/HomePageCtrl.fxml"));
+        root = FXMLLoader.load(getClass().getResource("/View/HomePage.fxml"));
 
         Scene scene = new Scene(root);
         stage.setScene(scene);
