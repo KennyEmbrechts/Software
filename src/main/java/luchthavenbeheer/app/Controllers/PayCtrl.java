@@ -120,6 +120,7 @@ public class PayCtrl implements Initializable {
     private void PayBtnClicked(ActionEvent event) throws IOException {
         if (CheckFieldValues(Regex.Regexs.Name,Name) && CheckFieldValues(Regex.Regexs.Name,FirstName) && CheckFieldValues(Regex.Regexs.AccountNr,AccountNr) && CheckFieldValues(Regex.Regexs.FourDigitNr,SecurityNr))
         {
+            
             ButtonWarning.setVisible(false);
             Stage stage;
             Parent root;

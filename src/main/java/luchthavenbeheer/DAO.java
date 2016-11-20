@@ -3,6 +3,8 @@ package luchthavenbeheer;
 import com.couchbase.lite.*;
 import com.couchbase.lite.util.Log;
 import luchthavenbeheer.app.FlightDetails;
+import luchthavenbeheer.app.Passenger;
+
 import java.io.IOException;
 import java.time.LocalDateTime;
 import java.util.*;
@@ -18,6 +20,7 @@ public class DAO {
     private Manager manager = null;
     private Document document = null;
     FlightDetails flightDetails = new FlightDetails();
+    Passenger passenger = new Passenger();
 
     public DAO()
     {
@@ -40,6 +43,60 @@ public class DAO {
         }
     }
 
+    public void getAll()
+    {
+        Query query = database.createAllDocumentsQuery();
+        query.setAllDocsMode(Query.AllDocsMode.ALL_DOCS);
+        QueryEnumerator result = null;
+        try {
+            result = query.run();
+        }
+        catch (CouchbaseLiteException e)
+        {
+            Log.e(TAG, "Cannot execute query", e);
+        }
+        for(Iterator<QueryRow> it = result; it.hasNext();)
+        {
+            QueryRow row = it.next();
+            document = database.getDocument(String.valueOf(row.getDocumentId()));
+            Log.w("Results: ", document.getProperties().toString());
+        }
+    }
+
+    //Passengers
+    public int CreatePassenger(Passenger passenger)
+    {
+        Map<String, Object> properties = new HashMap<>();
+        properties.put("type", "Passenger");
+        properties.put("Name", passenger.Name);
+        properties.put("HasLuggage", passenger.HasLuggage);
+        properties.put("IsCheckedIn", passenger.IsCheckedIn);
+        properties.put("FlightNr", passenger.FlightNr);
+        properties.put("NrTickets", passenger.NrTickets);
+        int TicketNr = (passenger.Name+passenger.FlightNr).hashCode();
+        document = database.getDocument(String.valueOf(TicketNr));
+
+        try {
+            document.putProperties(properties);
+            return TicketNr;
+        }
+        catch (CouchbaseLiteException e)
+        {
+            Log.e(TAG, "Cannot save document", e);
+            return -1;
+        }
+    }
+
+    public Passenger GetPassenger(String name, int flightNr)
+    {
+        document = database.getDocument(String.valueOf(name+flightNr));
+
+        passenger = passenger.CastDocumentToPassenger(document);
+
+        return passenger;
+    }
+
+    //Flights
     public Boolean CreateFlightDetails(FlightDetails details)
     {
         Map<String, Object> properties = new HashMap<>();
@@ -65,34 +122,16 @@ public class DAO {
         }
     }
 
+
     public FlightDetails getFlightDetails(int flightNr)
     {
         document = database.getDocument(String.valueOf(flightNr));
-
 
         flightDetails = flightDetails.CastDocumentToFlightDetails(document);
 
         return flightDetails;
     }
-    public void getAll()
-    {
-        Query query = database.createAllDocumentsQuery();
-        query.setAllDocsMode(Query.AllDocsMode.ALL_DOCS);
-        QueryEnumerator result = null;
-        try {
-            result = query.run();
-        }
-        catch (CouchbaseLiteException e)
-        {
-            Log.e(TAG, "Cannot execute query", e);
-        }
-        for(Iterator<QueryRow> it = result; it.hasNext();)
-        {
-            QueryRow row = it.next();
-            document = database.getDocument(String.valueOf(row.getDocumentId()));
-            Log.w("Results: ", document.getProperties().toString());
-        }
-    }
+
     public List<FlightDetails> getAllFlightDetails()
     {
         List<FlightDetails> details = new ArrayList<>();
