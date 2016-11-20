@@ -16,12 +16,15 @@ import javafx.scene.input.MouseEvent;
 import javafx.stage.Stage;
 import luchthavenbeheer.DAO;
 import luchthavenbeheer.app.FlightDetails;
-
+import javafx.scene.control.Alert;
+import javafx.scene.control.Alert.AlertType;
+import javafx.application.Platform;
 import java.io.IOException;
 import java.net.URL;
 import java.util.List;
 import java.util.ResourceBundle;
 import java.util.StringJoiner;
+import java.util.regex.Pattern;
 
 public class BuyTicketCtrl implements Initializable {
     DAO dao = null;
@@ -80,16 +83,34 @@ public class BuyTicketCtrl implements Initializable {
     @FXML
     private void BookTicketClicked (ActionEvent event) throws IOException
     {
-        Stage stage;
-        Parent root;
-        //get reference to the button's stage
-        stage=(Stage) BookTicket.getScene().getWindow();
-        //load up OTHER FXML document
-        root = FXMLLoader.load(getClass().getResource("/View/Pay.fxml"));
 
-        Scene scene = new Scene(root);
-        stage.setScene(scene);
-        stage.show();
+        Persons.getText();
+
+
+        if(Pattern.matches(Regex.Regexs.OneDigitNrNotNul.toString(), Persons.getText()))
+        {
+            if(Pattern.matches(Regex.Regexs.OneDigitNr.toString(), Luggage.getText()))
+            {
+                Stage stage;
+                Parent root;
+                //get reference to the button's stage
+                stage=(Stage) BookTicket.getScene().getWindow();
+                //load up OTHER FXML document
+                root = FXMLLoader.load(getClass().getResource("/View/Pay.fxml"));
+
+                Scene scene = new Scene(root);
+                stage.setScene(scene);
+                stage.show();
+            }
+            else
+            {
+                infoBox("Please inform us of your luggage", "Luggage Error Message","Luggage information");
+            }
+        }
+        else
+        {
+            infoBox("The amount of persons you're trying to buy tickets is incorrect (You can't buy more than 10 tickets for the same flight)", "Persons Error Message","Person information");
+        }
     }
 
     @FXML
@@ -105,6 +126,14 @@ public class BuyTicketCtrl implements Initializable {
         Scene scene = new Scene(root);
         stage.setScene(scene);
         stage.show();
+    }
+    public static void infoBox(String infoMessage, String titleBar, String headerMessage)
+    {
+        Alert alert = new Alert(AlertType.INFORMATION);
+        alert.setTitle(titleBar);
+        alert.setHeaderText(headerMessage);
+        alert.setContentText(infoMessage);
+        alert.showAndWait();
     }
 
 }

@@ -23,6 +23,8 @@ public class PayCtrl implements Initializable {
     @FXML
     private Button PayBtn;
     @FXML
+    private Button btnBack;
+    @FXML
     private Label PriceLbl;
     @FXML
     private TextField Name;
@@ -46,6 +48,7 @@ public class PayCtrl implements Initializable {
     @Override
     public void initialize(URL fxmlFileLocation, ResourceBundle resources) {
         assert PayBtn != null : "fx:id=\"PayBtn\" was not injected: check your FXML file 'simple.fxml'.";
+        assert btnBack != null : "fx:id=\"BackBtn\" was not injected: check your FXML file 'simple.fxml'.";
         assert PriceLbl != null : "fx:id=\"PriceLbl\" was not injected: check your FXML file 'simple.fxml'.";
         assert Name != null : "fx:id=\"Name\" was not injected: check your FXML file 'simple.fxml'.";
         assert FirstName != null : "fx:id=\"FirstName\" was not injected: check your FXML file 'simple.fxml'.";
@@ -115,7 +118,20 @@ public class PayCtrl implements Initializable {
             }
         });
     }
+    @FXML
+    private void ClickedBackBtn (ActionEvent event) throws IOException
+    {
+        Stage stage;
+        Parent root;
+        //get reference to the button's stage
+        stage=(Stage) btnBack.getScene().getWindow();
+        //load up OTHER FXML document
+        root = FXMLLoader.load(getClass().getResource("/View/HomePage.fxml"));
 
+        Scene scene = new Scene(root);
+        stage.setScene(scene);
+        stage.show();
+    }
     @FXML
     private void PayBtnClicked(ActionEvent event) throws IOException {
         if (CheckFieldValues(Regex.Regexs.Name,Name) && CheckFieldValues(Regex.Regexs.Name,FirstName) && CheckFieldValues(Regex.Regexs.AccountNr,AccountNr) && CheckFieldValues(Regex.Regexs.FourDigitNr,SecurityNr))
