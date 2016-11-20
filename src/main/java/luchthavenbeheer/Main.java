@@ -1,14 +1,11 @@
 package luchthavenbeheer;
 
-import com.couchbase.lite.CouchbaseLiteException;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
 import luchthavenbeheer.app.FlightDetails;
-
-import java.time.LocalDateTime;
 import java.util.List;
 
 public class Main extends Application {
@@ -16,7 +13,7 @@ public class Main extends Application {
     @Override
     public void start(Stage primaryStage) throws Exception{
         Parent root = FXMLLoader.load(getClass().getResource("/View/HomePage.fxml"));
-        primaryStage.setTitle("Luchthaven beheer");
+        primaryStage.setTitle("Airport Management");
         primaryStage.setScene(new Scene(root, 800, 600));
         primaryStage.show();
     }

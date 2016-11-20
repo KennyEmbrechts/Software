@@ -1,8 +1,5 @@
 package luchthavenbeheer.app.Controllers;
 
-/**
- * Created by Jente on 20/11/2016.
- */
 public class Regex
 {
     public enum Regexs{

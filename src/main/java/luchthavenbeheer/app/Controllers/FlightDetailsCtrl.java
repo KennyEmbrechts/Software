@@ -13,17 +13,12 @@ import javafx.scene.control.ListView;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
 import luchthavenbeheer.DAO;
-import luchthavenbeheer.app.Flight;
 import luchthavenbeheer.app.FlightDetails;
-
 import java.io.IOException;
 import java.net.URL;
-import java.util.List;
 import java.util.ResourceBundle;
 
-/**
- * Created by jente on 5/11/16.
- */
+
 public class FlightDetailsCtrl implements Initializable {
 
     @FXML

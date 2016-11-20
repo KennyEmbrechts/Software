@@ -10,7 +10,6 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
-
 import javafx.scene.control.ListView;
 import javafx.scene.input.MouseEvent;
 import javafx.stage.Stage;
@@ -18,12 +17,10 @@ import luchthavenbeheer.DAO;
 import luchthavenbeheer.app.FlightDetails;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Alert.AlertType;
-import javafx.application.Platform;
 import java.io.IOException;
 import java.net.URL;
 import java.util.List;
 import java.util.ResourceBundle;
-import java.util.StringJoiner;
 import java.util.regex.Pattern;
 
 public class BuyTicketCtrl implements Initializable {
@@ -76,7 +73,7 @@ public class BuyTicketCtrl implements Initializable {
         oDetails.add("Departure: "+details.LeaveHour.toString());
         oDetails.add("Arrival: "+details.ArrivalHour.toString());
         oDetails.add("FlightNr: "+String.valueOf(details.AirplaneNr));
-        oDetails.add("Price: "+String.valueOf(details.Price));
+        oDetails.add("Price: "+String.valueOf(details.Price)+"€");
         ListDetails.setItems(oDetails);
     }
 
