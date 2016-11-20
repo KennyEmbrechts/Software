@@ -1,5 +1,7 @@
 package luchthavenbeheer.app.Controllers;
 
+import javafx.beans.value.ChangeListener;
+import javafx.beans.value.ObservableValue;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -8,14 +10,11 @@ import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.scene.control.Button;
-import javafx.scene.control.TextField;
-import javafx.scene.control.ListView;
+import javafx.scene.control.*;
 import javafx.scene.input.MouseEvent;
 import javafx.stage.Stage;
 import luchthavenbeheer.DAO;
 import luchthavenbeheer.app.FlightDetails;
-import javafx.scene.control.Alert;
 import javafx.scene.control.Alert.AlertType;
 import java.io.IOException;
 import java.net.URL;
@@ -37,6 +36,11 @@ public class BuyTicketCtrl implements Initializable {
     private TextField Luggage;
 
     @FXML
+    private Label lblPrice;
+
+    private FlightDetails details;
+
+    @FXML
     private ListView ListTickets;
 
     @FXML
@@ -50,7 +54,51 @@ public class BuyTicketCtrl implements Initializable {
         assert ListTickets  != null : "fx:id=\"ListTickets\" was not injected: check your FXML file 'simple.fxml'.";
         assert ListDetails != null : "fx:id=\"ListDetails\" was not injected: check your FXML file 'simple.fxml'.";
         assert btnBack != null : "fx:id=\"BackBtn\" was not injected: check your FXML file 'simple.fxml'.";
+        assert lblPrice != null : "fx:id=\"lblPrice\" was not injected: check your FXML file 'simple.fxml'.";
         setData();
+
+        Persons.textProperty().addListener(new ChangeListener<String>() {
+            @Override
+            public void changed(ObservableValue<? extends String> observable, String oldValue, String newValue) {
+                int luggage, persons;
+                if(Persons.getText().equals(""))
+                {
+                    persons = 0;
+                }
+                else {
+                    persons = Integer.valueOf(Persons.getText());
+                }
+                if(Luggage.getText().equals(""))
+                {
+                    luggage = 0;
+                }
+                else {
+                    luggage = Integer.valueOf(Luggage.getText());
+                }
+                lblPrice.setText("Total Price: "+String.valueOf((persons*details.Price)+luggage*25)+"€");
+            }
+        });
+        Luggage.textProperty().addListener(new ChangeListener<String>() {
+            @Override
+            public void changed(ObservableValue<? extends String> observable, String oldValue, String newValue) {
+                int luggage, persons;
+                if(Persons.getText().equals(""))
+                {
+                    persons = 0;
+                }
+                else {
+                    persons = Integer.valueOf(Persons.getText());
+                }
+                if(Luggage.getText().equals(""))
+                {
+                    luggage = 0;
+                }
+                else {
+                    luggage = Integer.valueOf(Luggage.getText());
+                }
+                lblPrice.setText("Total Price: "+String.valueOf((persons*details.Price)+luggage*25)+"€");
+            }
+        });
     }
 
     public void setData()
@@ -68,7 +116,7 @@ public class BuyTicketCtrl implements Initializable {
     public void OnItemClicked(MouseEvent arg0)
     {
         String SelectedItem[] = ListTickets.getSelectionModel().selectedItemProperty().get().toString().split(":");
-        FlightDetails details = dao.getFlightDetails(Integer.valueOf(SelectedItem[0]));
+        details = dao.getFlightDetails(Integer.valueOf(SelectedItem[0]));
         ObservableList<String> oDetails = FXCollections.observableArrayList();
         oDetails.add("Departure: "+details.LeaveHour.toString());
         oDetails.add("Arrival: "+details.ArrivalHour.toString());
@@ -132,5 +180,6 @@ public class BuyTicketCtrl implements Initializable {
         alert.setContentText(infoMessage);
         alert.showAndWait();
     }
+
 
 }
