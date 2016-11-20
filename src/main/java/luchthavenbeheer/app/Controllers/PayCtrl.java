@@ -10,6 +10,8 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.stage.Stage;
+import luchthavenbeheer.DAO;
+import luchthavenbeheer.app.Passenger;
 
 import java.io.IOException;
 import java.net.URL;
@@ -42,6 +44,11 @@ public class PayCtrl implements Initializable {
     @FXML
     private Label ButtonWarning;
 
+    private DAO dao;
+    private Boolean HasBagage;
+    private int FlightNr;
+    private int NrOfPassengers;
+
     @Override
     public void initialize(URL fxmlFileLocation, ResourceBundle resources) {
         assert PayBtn != null : "fx:id=\"PayBtn\" was not injected: check your FXML file 'simple.fxml'.";
@@ -56,6 +63,8 @@ public class PayCtrl implements Initializable {
         assert AccountWarning != null : "fx:id=\"AccountWarning\" was not injected: check your FXML file 'simple.fxml'.";
         assert SecurityNrWarning != null : "fx:id=\"SecurityNrWarning\" was not injected: check your FXML file 'simple.fxml'.";
         assert ButtonWarning != null : "fx:id=\"ButtonWarning\" was not injected: check your FXML file 'simple.fxml'.";
+
+        dao = new DAO();
 
         // Listen for TextField text changes
         Name.textProperty().addListener(new ChangeListener<String>() {
@@ -115,6 +124,14 @@ public class PayCtrl implements Initializable {
             }
         });
     }
+
+    public void setParams(Boolean HasBagage, int FlightNr, int NrOfPassengers)
+    {
+        this.HasBagage = HasBagage;
+        this.FlightNr = FlightNr;
+        this.NrOfPassengers = NrOfPassengers;
+    }
+
     @FXML
     private void ClickedBackBtn (ActionEvent event) throws IOException
     {
@@ -133,8 +150,9 @@ public class PayCtrl implements Initializable {
     private void PayBtnClicked(ActionEvent event) throws IOException {
         if (CheckFieldValues(Regex.Regexs.Name,Name) && CheckFieldValues(Regex.Regexs.Name,FirstName) && CheckFieldValues(Regex.Regexs.AccountNr,AccountNr) && CheckFieldValues(Regex.Regexs.FourDigitNr,SecurityNr))
         {
-            
+            dao.CreatePassenger(new Passenger(HasBagage, false, (Name.getText() + "" + FirstName.getText()), FlightNr, NrOfPassengers));
             ButtonWarning.setVisible(false);
+            infoBox("This is your ticket number please keep this safe at all times", "Ticket Number", "Please save your ticket number!");
             Stage stage;
             Parent root;
             //get reference to the button's stage
@@ -159,5 +177,14 @@ public class PayCtrl implements Initializable {
             return true;
         }
         return false;
+    }
+
+    public static void infoBox(String infoMessage, String titleBar, String headerMessage)
+    {
+        Alert alert = new Alert(Alert.AlertType.WARNING);
+        alert.setTitle(titleBar);
+        alert.setHeaderText(headerMessage);
+        alert.setContentText(infoMessage);
+        alert.showAndWait();
     }
 }
