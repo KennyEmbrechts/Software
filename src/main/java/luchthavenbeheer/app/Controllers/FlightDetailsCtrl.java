@@ -13,6 +13,7 @@ import javafx.scene.control.ListView;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
 import luchthavenbeheer.DAO;
+import luchthavenbeheer.app.Flight;
 import luchthavenbeheer.app.FlightDetails;
 
 import java.io.IOException;
@@ -61,19 +62,13 @@ public class FlightDetailsCtrl implements Initializable {
     private void ClickSearchBtn (ActionEvent event) throws IOException
     {
         DAO dao = new DAO();
-        List<FlightDetails> details = dao.getAllFlightDetails();
         ObservableList<String> oDetails = FXCollections.observableArrayList();
         String value = FlightNumber.getText();
         System.out.println(value);
-        for (FlightDetails detail: details) {
-            System.out.println(detail.FlightNr);
-            if(String.valueOf(detail.FlightNr).equals(value)) {
-                oDetails.add("Flightnumber: "+String.valueOf(detail.FlightNr));
-                oDetails.add("Coming from: "+String.valueOf(detail.FlyFrom));
-                oDetails.add("Arriving at: "+String.valueOf(detail.FlyTo)+" at "+ detail.ArrivalHour);
-            }
-        }
-
+        FlightDetails detail = dao.getFlightDetails(Integer.valueOf(FlightNumber.getText()));
+        oDetails.add("Flightnumber: "+String.valueOf(detail.FlightNr));
+        oDetails.add("Coming from: "+String.valueOf(detail.FlyFrom));
+        oDetails.add("Arriving at: "+String.valueOf(detail.FlyTo)+" at "+ detail.ArrivalHour);
         lstDetails.setItems(oDetails);
     }
 }
