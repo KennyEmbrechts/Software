@@ -9,20 +9,20 @@
 
 <Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8.0.76-ea" xmlns:fx="http://javafx.com/fxml/1">
    <children>
-      <TextField layoutX="32.0" layoutY="98.0" promptText="TicketNr" />
+      <TextField fx:id="txtTicketNr" layoutX="32.0" layoutY="98.0" promptText="TicketNr" />
       <Label layoutX="203.0" layoutY="21.0" text="Inchecken">
          <font>
             <Font name="System Bold" size="34.0" />
          </font>
       </Label>
-      <Button layoutX="398.0" layoutY="98.0" mnemonicParsing="false" text="Zoeken" />
+      <Button fx:id="btnSearch" layoutX="398.0" layoutY="98.0" mnemonicParsing="false" text="Search" />
       <Pane layoutX="-1.0" layoutY="130.0" prefHeight="270.0" prefWidth="600.0">
          <children>
-            <ListView layoutX="14.0" layoutY="23.0" prefHeight="110.0" prefWidth="200.0" />
-            <TextField layoutX="346.0" layoutY="23.0" promptText="Naam" />
-            <Button layoutX="354.0" layoutY="107.0" mnemonicParsing="false" text="Bagage inchecken" />
+            <ListView fx:id="lstDetails" layoutX="14.0" layoutY="23.0" prefHeight="110.0" prefWidth="200.0" />
+            <TextField fx:id="txtName" layoutX="346.0" layoutY="23.0" promptText="Name" />
+            <Button fx:id="btnCheckInLuggage" layoutX="354.0" layoutY="107.0" mnemonicParsing="false" text="Check in Luggage" />
             <Label layoutX="404.0" layoutY="70.0" text="TicketNr" />
-            <Button layoutX="269.0" layoutY="192.0" mnemonicParsing="false" text="Inchecken" />
+            <Button fx:id="btnCheckIn" layoutX="269.0" layoutY="192.0" mnemonicParsing="false" text="Checkin" />
          </children>
       </Pane>
    </children>
