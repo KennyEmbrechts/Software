@@ -56,6 +56,7 @@ public class FlightDetailsCtrl implements Initializable {
         stage.setScene(scene);
         stage.show();
     }
+
     @FXML
     private void ClickSearchBtn (ActionEvent event) throws IOException
     {

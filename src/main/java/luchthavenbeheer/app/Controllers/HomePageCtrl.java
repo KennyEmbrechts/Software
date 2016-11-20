@@ -16,15 +16,18 @@ import javafx.stage.Stage;
 public class HomePageCtrl implements Initializable {
 
     @FXML
-    private Button BuyTicketBtn;
+    private Button btnBuyTicket;
     @FXML
-    private Button CheckInBtn;
+    private Button btnCheckIn;
+    @FXML
+    private Button btnDetails;
 
 
     @Override
     public void initialize(URL fxmlFileLocation, ResourceBundle resources){
-        assert BuyTicketBtn != null : "fx:id=\"BuyTicketBtn\" was not injected: check your FXML file 'simple.fxml'.";
-        assert CheckInBtn != null : "fx:id=\"CheckInBtn\" was not injected: check your FXML file 'simple.fxml'.";
+        assert btnBuyTicket != null : "fx:id=\"BtnBuyTicket\" was not injected: check your FXML file 'simple.fxml'.";
+        assert btnCheckIn != null : "fx:id=\"BtnCheckIn\" was not injected: check your FXML file 'simple.fxml'.";
+        assert btnDetails != null : "fx:id=\"BtnDetails\" was not injected: check your FXML file 'simple.fxml'.";
     }
 
     @FXML
@@ -33,7 +36,7 @@ public class HomePageCtrl implements Initializable {
         Stage stage;
         Parent root;
         //get reference to the button's stage
-        stage=(Stage) BuyTicketBtn.getScene().getWindow();
+        stage=(Stage) btnBuyTicket.getScene().getWindow();
         //load up OTHER FXML document
         root = FXMLLoader.load(getClass().getResource("/View/BuyTicket.fxml"));
 
@@ -48,9 +51,23 @@ public class HomePageCtrl implements Initializable {
         Stage stage;
         Parent root;
         //get reference to the button's stage
-        stage=(Stage) CheckInBtn.getScene().getWindow();
+        stage=(Stage) btnCheckIn.getScene().getWindow();
         //load up OTHER FXML document
         root = FXMLLoader.load(getClass().getResource("/View/CheckIn.fxml"));
+
+        Scene scene = new Scene(root);
+        stage.setScene(scene);
+        stage.show();
+    }
+    @FXML
+    private void ClickedDetailsBtn (ActionEvent event) throws IOException
+    {
+        Stage stage;
+        Parent root;
+        //get reference to the button's stage
+        stage=(Stage) btnDetails.getScene().getWindow();
+        //load up OTHER FXML document
+        root = FXMLLoader.load(getClass().getResource("/View/FlightDetails.fxml"));
 
         Scene scene = new Scene(root);
         stage.setScene(scene);
