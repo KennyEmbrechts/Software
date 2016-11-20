@@ -17,6 +17,7 @@ public class DAO {
     private Database database = null;
     private Manager manager = null;
     private Document document = null;
+    FlightDetails flightDetails = new FlightDetails();
 
     public DAO()
     {
@@ -50,6 +51,7 @@ public class DAO {
         properties.put("ArrivalHour", details.ArrivalHour.toString());
         properties.put("Pilot", details.Pilot);
         properties.put("AirplaneNr", details.AirplaneNr);
+        properties.put("Price", details.Price);
         document = database.getDocument(String.valueOf(details.FlightNr));
 
         try {
@@ -67,7 +69,8 @@ public class DAO {
     {
         document = database.getDocument(String.valueOf(flightNr));
 
-        FlightDetails flightDetails = CastDocumentToFlightDetails(document);
+
+        flightDetails = flightDetails.CastDocumentToFlightDetails(document);
 
         return flightDetails;
     }
@@ -109,23 +112,10 @@ public class DAO {
             document = database.getDocument(String.valueOf(row.getDocumentId()));
             String type = (String)document.getProperty("type");
             if(type.equals("FlightDetails"))
-                details.add(CastDocumentToFlightDetails(document));
+                details.add(flightDetails.CastDocumentToFlightDetails(document));
         }
         return details;
     }
 
-    public FlightDetails CastDocumentToFlightDetails(Document document)
-    {
-        FlightDetails.Location FlightFrom = FlightDetails.Location.valueOf((String)document.getProperty("FlightFrom"));
-        FlightDetails.Location FlightTo = FlightDetails.Location.valueOf((String)document.getProperty("FlightTo"));
-        LocalDateTime LeaveHour = LocalDateTime.parse((String)document.getProperty("LeaveHour"));
-        LocalDateTime ArrivalHour = LocalDateTime.parse((String)document.getProperty("ArrivalHour"));
-        String Pilot = (String)document.getProperty("Pilot");
-        int AirplaneNr = (int)document.getProperty("AirplaneNr");
-        int flightNr = (int)document.getProperty("FlightNr");
 
-        FlightDetails flightDetails = new FlightDetails(FlightFrom,FlightTo, flightNr,
-                LeaveHour, ArrivalHour, Pilot, AirplaneNr);
-        return flightDetails;
-    }
 }

@@ -61,9 +61,10 @@ public class BuyTicketCtrl implements Initializable {
         String SelectedItem[] = ListTickets.getSelectionModel().selectedItemProperty().get().toString().split(":");
         FlightDetails details = dao.getFlightDetails(Integer.valueOf(SelectedItem[0]));
         ObservableList<String> oDetails = FXCollections.observableArrayList();
-        oDetails.add(details.LeaveHour.toString());
-        oDetails.add(details.ArrivalHour.toString());
-        oDetails.add(String.valueOf(details.AirplaneNr));
+        oDetails.add("Departure: "+details.LeaveHour.toString());
+        oDetails.add("Arrival: "+details.ArrivalHour.toString());
+        oDetails.add("FlightNr: "+String.valueOf(details.AirplaneNr));
+        oDetails.add("Price: "+String.valueOf(details.Price));
         ListDetails.setItems(oDetails);
     }
 
