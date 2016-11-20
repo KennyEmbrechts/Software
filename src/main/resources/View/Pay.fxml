@@ -12,7 +12,7 @@
       <TextField fx:id="FirstName" layoutX="215.0" layoutY="118.0" promptText="First name" />
       <TextField fx:id="AccountNr" layoutX="215.0" layoutY="151.0" promptText="Bank account" />
       <TextField fx:id="SecurityNr" layoutX="215.0" layoutY="187.0" promptText="Safety nr." />
-      <Button fx:id="PayBtn" layoutX="262.0" layoutY="249.0" mnemonicParsing="false" text="Betalen" />
+      <Button fx:id="PayBtn" layoutX="271.0" layoutY="245.0" mnemonicParsing="false" text="Pay" />
       <Label fx:id="PriceLbl" layoutX="264.0" layoutY="219.0" text="Totale prijs" />
       <Label layoutX="260.0" layoutY="35.0" text="Pay">
          <font>
