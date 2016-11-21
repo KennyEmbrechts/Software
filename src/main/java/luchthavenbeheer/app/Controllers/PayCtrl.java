@@ -1,6 +1,8 @@
 package luchthavenbeheer.app.Controllers;
 
+import com.sun.xml.internal.bind.CycleRecoverable;
 import com.sun.xml.internal.messaging.saaj.util.FinalArrayList;
+import com.sun.xml.internal.ws.org.objectweb.asm.ClassAdapter;
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
 import javafx.event.ActionEvent;
@@ -47,9 +49,10 @@ public class PayCtrl implements Initializable {
     private Label ButtonWarning;
 
     private DAO dao;
-    private Boolean HasBagage;
+    private Boolean HasLuggage;
     private int FlightNr;
     private int NrOfPassengers;
+    private int Price;
 
     @Override
     public void initialize(URL fxmlFileLocation, ResourceBundle resources) {
@@ -125,13 +128,8 @@ public class PayCtrl implements Initializable {
                 }
             }
         });
-    }
-
-    public void setParams(Boolean HasBagage, int FlightNr, int NrOfPassengers)
-    {
-        this.HasBagage = HasBagage;
-        this.FlightNr = FlightNr;
-        this.NrOfPassengers = NrOfPassengers;
+        Price = Context.getInstance().getPrice();
+        PriceLbl.setText("Total Price: €" + Price);
     }
 
     @FXML
@@ -152,7 +150,11 @@ public class PayCtrl implements Initializable {
     private void PayBtnClicked(ActionEvent event) throws IOException {
         if (CheckFieldValues(Regex.Regexs.Name,Name) && CheckFieldValues(Regex.Regexs.Name,FirstName) && CheckFieldValues(Regex.Regexs.AccountNr,AccountNr) && CheckFieldValues(Regex.Regexs.FourDigitNr,SecurityNr))
         {
-            dao.CreatePassenger(new Passenger(HasBagage, false, (Name.getText() + "" + FirstName.getText()), FlightNr, NrOfPassengers));
+            FlightNr = Context.getInstance().setFlightNR();
+            NrOfPassengers = Context.getInstance().getNrOFPassengers();
+            HasLuggage = Context.getInstance().getHasLuggage();
+
+            dao.CreatePassenger(new Passenger(HasLuggage, false, (Name.getText() + "" + FirstName.getText()), FlightNr, NrOfPassengers));
             ButtonWarning.setVisible(false);
             infoBox("This is your ticket number please keep this safe at all times", "Ticket Number", "Please save your ticket number!");
             Stage stage;

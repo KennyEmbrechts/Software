@@ -16,6 +16,8 @@ import javafx.stage.Stage;
 import luchthavenbeheer.DAO;
 import luchthavenbeheer.app.FlightDetails;
 import javafx.scene.control.Alert.AlertType;
+
+import javax.xml.soap.Detail;
 import java.io.IOException;
 import java.net.URL;
 import java.util.List;
@@ -46,7 +48,9 @@ public class BuyTicketCtrl implements Initializable {
     @FXML
     private ListView ListDetails;
 
-    private boolean HasBagage = false;
+    public static boolean HasBagage = false;
+    public static String[] FlightNr;
+    public static int Price;
 
     @Override
     public void initialize(URL fxmlFileLocation, ResourceBundle resources){
@@ -82,14 +86,20 @@ public class BuyTicketCtrl implements Initializable {
         else {
             persons = Integer.valueOf(Persons.getText());
         }
+        Context.getInstance().setNrOFPassengers(persons);
         if(Luggage.getText().equals(""))
         {
             luggage = 0;
+            Context.getInstance().setHasLuggage(false);
         }
         else {
             luggage = Integer.valueOf(Luggage.getText());
+            Context.getInstance().setHasLuggage(true);
         }
-        lblPrice.setText("Total Price: "+String.valueOf((persons*details.Price)+luggage*25)+"€");
+        int totalPrice = (persons*details.Price)+luggage*25;
+        lblPrice.setText("Total Price: "+String.valueOf(totalPrice)+"€");
+        Context.getInstance().setPrice(totalPrice);
+
     }
     public void setData()
     {
@@ -113,6 +123,7 @@ public class BuyTicketCtrl implements Initializable {
         oDetails.add("FlightNr: "+String.valueOf(details.AirplaneNr));
         oDetails.add("Price: "+String.valueOf(details.Price)+"€");
         ListDetails.setItems(oDetails);
+        Context.getInstance().getFlightNr(Integer.getInteger(SelectedItem[0]));
     }
 
     @FXML
@@ -137,14 +148,16 @@ public class BuyTicketCtrl implements Initializable {
                     
                     if(Integer.valueOf(Luggage.getText()) > 0)
                         HasBagage = true;
-                    String[] FlightNr = ListTickets.getSelectionModel().selectedItemProperty().get().toString().split(":");
+                    FlightNr = ListTickets.getSelectionModel().selectedItemProperty().get().toString().split(":");
                     String nrOfPersons = Persons.getText();
 
+
                     PayCtrl payCtrl = new PayCtrl();
-                    //payCtrl.setParams(HasBagage, Integer.getInteger(FlightNr[0]),Integer.getInteger(nrOfPersons));
+
 
                     Scene scene = new Scene(root);
                     stage.setScene(scene);
+                    //payCtrl.setParams(HasBagage, Integer.getInteger(FlightNr[0]),Integer.getInteger(nrOfPersons), Price);
                     stage.show();
                 }
                 else

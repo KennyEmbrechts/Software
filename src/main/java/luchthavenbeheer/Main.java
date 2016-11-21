@@ -6,6 +6,8 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
 import luchthavenbeheer.app.FlightDetails;
+import luchthavenbeheer.app.Passenger;
+
 import java.util.List;
 
 public class Main extends Application {
@@ -31,6 +33,8 @@ public class Main extends Application {
         dao.CreateFlightDetails(details4);
         //dao.getAll();*/
         List<FlightDetails> a = dao.getAllFlightDetails();
+        Passenger pas = dao.GetPassenger("AdamsJente", 5874);
+        System.out.println(pas);
 
         launch(args);
     }
