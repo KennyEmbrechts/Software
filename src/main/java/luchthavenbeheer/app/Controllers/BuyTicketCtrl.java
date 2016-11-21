@@ -62,47 +62,35 @@ public class BuyTicketCtrl implements Initializable {
         Persons.textProperty().addListener(new ChangeListener<String>() {
             @Override
             public void changed(ObservableValue<? extends String> observable, String oldValue, String newValue) {
-                int luggage, persons;
-                if(Persons.getText().equals(""))
-                {
-                    persons = 0;
-                }
-                else {
-                    persons = Integer.valueOf(Persons.getText());
-                }
-                if(Luggage.getText().equals(""))
-                {
-                    luggage = 0;
-                }
-                else {
-                    luggage = Integer.valueOf(Luggage.getText());
-                }
-                lblPrice.setText("Total Price: "+String.valueOf((persons*details.Price)+luggage*25)+"€");
+                setPrice(details);
             }
         });
         Luggage.textProperty().addListener(new ChangeListener<String>() {
             @Override
             public void changed(ObservableValue<? extends String> observable, String oldValue, String newValue) {
-                int luggage, persons;
-                if(Persons.getText().equals(""))
-                {
-                    persons = 0;
-                }
-                else {
-                    persons = Integer.valueOf(Persons.getText());
-                }
-                if(Luggage.getText().equals(""))
-                {
-                    luggage = 0;
-                }
-                else {
-                    luggage = Integer.valueOf(Luggage.getText());
-                }
-                lblPrice.setText("Total Price: "+String.valueOf((persons*details.Price)+luggage*25)+"€");
+                setPrice(details);
             }
         });
     }
-
+    public void setPrice(FlightDetails Details)
+    {
+        int luggage, persons;
+        if(Persons.getText().equals(""))
+        {
+            persons = 0;
+        }
+        else {
+            persons = Integer.valueOf(Persons.getText());
+        }
+        if(Luggage.getText().equals(""))
+        {
+            luggage = 0;
+        }
+        else {
+            luggage = Integer.valueOf(Luggage.getText());
+        }
+        lblPrice.setText("Total Price: "+String.valueOf((persons*details.Price)+luggage*25)+"€");
+    }
     public void setData()
     {
         dao = new DAO();
