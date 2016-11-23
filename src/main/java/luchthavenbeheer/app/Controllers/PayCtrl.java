@@ -150,11 +150,11 @@ public class PayCtrl implements Initializable {
     private void PayBtnClicked(ActionEvent event) throws IOException {
         if (CheckFieldValues(Regex.Regexs.Name,Name) && CheckFieldValues(Regex.Regexs.Name,FirstName) && CheckFieldValues(Regex.Regexs.AccountNr,AccountNr) && CheckFieldValues(Regex.Regexs.FourDigitNr,SecurityNr))
         {
-            FlightNr = Context.getInstance().setFlightNR();
+            FlightNr = Context.getInstance().getFlightNr();
             NrOfPassengers = Context.getInstance().getNrOFPassengers();
             HasLuggage = Context.getInstance().getHasLuggage();
 
-            dao.CreatePassenger(new Passenger(HasLuggage, false, (Name.getText() + "" + FirstName.getText()), FlightNr, NrOfPassengers));
+            dao.CreatePassenger(new Passenger(HasLuggage, false, (Name.getText() + FirstName.getText()), FlightNr, NrOfPassengers));
             ButtonWarning.setVisible(false);
             infoBox("This is your ticket number please keep this safe at all times", "Ticket Number", "Please save your ticket number!");
             Stage stage;

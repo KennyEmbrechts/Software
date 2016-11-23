@@ -123,7 +123,7 @@ public class BuyTicketCtrl implements Initializable {
         oDetails.add("FlightNr: "+String.valueOf(details.AirplaneNr));
         oDetails.add("Price: "+String.valueOf(details.Price)+"€");
         ListDetails.setItems(oDetails);
-        Context.getInstance().getFlightNr(Integer.getInteger(SelectedItem[0]));
+        Context.getInstance().setFlightNr(Integer.getInteger(SelectedItem[0]));
     }
 
     @FXML

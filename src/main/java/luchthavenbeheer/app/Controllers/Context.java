@@ -49,12 +49,12 @@ public class Context {
 
     private int FlightNr;
 
-    public void getFlightNr(int FlightNr)
+    public void setFlightNr(int FlightNr)
     {
         this.FlightNr = FlightNr;
     }
 
-    public int setFlightNR()
+    public int getFlightNr()
     {
         return FlightNr;
     }

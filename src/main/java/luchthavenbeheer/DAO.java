@@ -88,7 +88,7 @@ public class DAO {
 
     public Passenger GetPassenger(String name, int flightNr)
     {
-        document = database.getDocument(String.valueOf(name+flightNr));
+        document = database.getDocument(String.valueOf((name+flightNr).hashCode()));
 
         passenger = passenger.CastDocumentToPassenger(document);
 
