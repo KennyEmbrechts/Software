@@ -1,8 +1,5 @@
 package luchthavenbeheer.app.Controllers;
 
-/**
- * Created by Jente on 21/11/2016.
- */
 public class Context {
     private final static Context instance = new Context();
 

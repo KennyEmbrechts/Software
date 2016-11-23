@@ -1,8 +1,6 @@
 package luchthavenbeheer.app.Controllers;
 
-import com.sun.xml.internal.bind.CycleRecoverable;
-import com.sun.xml.internal.messaging.saaj.util.FinalArrayList;
-import com.sun.xml.internal.ws.org.objectweb.asm.ClassAdapter;
+
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
 import javafx.event.ActionEvent;
@@ -15,8 +13,6 @@ import javafx.scene.control.*;
 import javafx.stage.Stage;
 import luchthavenbeheer.DAO;
 import luchthavenbeheer.app.Passenger;
-
-import java.io.File;
 import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;

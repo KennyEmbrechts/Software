@@ -4,16 +4,11 @@ import com.couchbase.lite.*;
 import com.couchbase.lite.util.Log;
 import luchthavenbeheer.app.FlightDetails;
 import luchthavenbeheer.app.Passenger;
-
 import java.io.IOException;
 import java.util.*;
 import java.util.List;
-
 import static com.couchbase.lite.Document.TAG;
 
-/**
- * Created by Jente on 17/11/2016.
- */
 public class DAO {
     private Database database = null;
     private Manager manager = null;

@@ -1,8 +1,5 @@
 package luchthavenbeheer.app;
 
-
-
-
 public class Luggage
 {
 	public int LuggageNr;

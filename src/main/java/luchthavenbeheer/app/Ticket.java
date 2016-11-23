@@ -1,8 +1,5 @@
 package luchthavenbeheer.app;
 
-
-
-
 public class Ticket
 {
 	public int TicketNr;
