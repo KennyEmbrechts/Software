@@ -67,7 +67,6 @@ public class BuyTicketCtrl implements Initializable {
             @Override
             public void changed(ObservableValue<? extends String> observable, String oldValue, String newValue) {
                 setPrice(details);
-                //test
             }
         });
         Luggage.textProperty().addListener(new ChangeListener<String>() {
