@@ -16,8 +16,6 @@ import javafx.stage.Stage;
 import luchthavenbeheer.DAO;
 import luchthavenbeheer.app.FlightDetails;
 import javafx.scene.control.Alert.AlertType;
-
-import javax.xml.soap.Detail;
 import java.io.IOException;
 import java.net.URL;
 import java.util.List;

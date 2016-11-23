@@ -1,6 +1,5 @@
 package luchthavenbeheer.app;
 
-
 import java.util.List;
 
 public class Flight
