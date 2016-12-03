@@ -36,8 +36,9 @@ public class FlightDetails
     }
 	public FlightDetails CastDocumentToFlightDetails(Document document)
 	{
-		FlightDetails.Location FlightFrom = FlightDetails.Location.valueOf((String)document.getProperty("FlightFrom"));
-		FlightDetails.Location FlightTo = FlightDetails.Location.valueOf((String)document.getProperty("FlightTo"));
+		String loc = String.valueOf(document.getProperty("FlightFrom"));
+		FlightDetails.Location FlightFrom = FlightDetails.Location.valueOf(loc);
+		FlightDetails.Location FlightTo = FlightDetails.Location.valueOf(String.valueOf(document.getProperty("FlightTo")));
 		LocalDateTime LeaveHour = LocalDateTime.parse((String)document.getProperty("LeaveHour"));
 		LocalDateTime ArrivalHour = LocalDateTime.parse((String)document.getProperty("ArrivalHour"));
 		String Pilot = (String)document.getProperty("Pilot");

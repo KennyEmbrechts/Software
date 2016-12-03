@@ -1,7 +1,5 @@
 package luchthavenbeheer.app.Controllers;
 
-import javafx.beans.value.ChangeListener;
-import javafx.beans.value.ObservableValue;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -11,7 +9,6 @@ import javafx.fxml.Initializable;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
-import javafx.scene.input.MouseEvent;
 import javafx.stage.Stage;
 import luchthavenbeheer.DAO;
 import luchthavenbeheer.app.FlightDetails;
@@ -46,9 +43,7 @@ public class BuyTicketCtrl implements Initializable {
     @FXML
     private ListView ListDetails;
 
-    public static boolean HasBagage = false;
-    public static String[] FlightNr;
-    public static int Price;
+    private int FlightNr;
 
     @Override
     public void initialize(URL fxmlFileLocation, ResourceBundle resources){
@@ -61,17 +56,24 @@ public class BuyTicketCtrl implements Initializable {
         assert lblPrice != null : "fx:id=\"lblPrice\" was not injected: check your FXML file 'simple.fxml'.";
         setData();
 
-        Persons.textProperty().addListener(new ChangeListener<String>() {
-            @Override
-            public void changed(ObservableValue<? extends String> observable, String oldValue, String newValue) {
+        Persons.textProperty().addListener((observable, oldValue, newValue) -> {
                 setPrice(details);
-            }
         });
-        Luggage.textProperty().addListener(new ChangeListener<String>() {
-            @Override
-            public void changed(ObservableValue<? extends String> observable, String oldValue, String newValue) {
+        Luggage.textProperty().addListener((observable, oldValue, newValue) -> {
                 setPrice(details);
-            }
+        });
+
+        ListTickets.getSelectionModel().selectedItemProperty().addListener((observable, oldValue, newValue) -> {
+        String SelectedItem[] = String.valueOf(newValue).split(":");
+        FlightNr = Integer.parseInt(SelectedItem[0]);
+        details = dao.getFlightDetails(FlightNr);
+        ObservableList<String> oDetails = FXCollections.observableArrayList();
+        oDetails.add("Departure: "+details.LeaveHour.toString());
+        oDetails.add("Arrival: "+details.ArrivalHour.toString());
+        oDetails.add("FlightNr: "+String.valueOf(details.AirplaneNr));
+        oDetails.add("Price: "+String.valueOf(details.Price)+"€");
+        ListDetails.setItems(oDetails);
+        Context.getInstance().setFlightNr(FlightNr);
         });
     }
     public void setPrice(FlightDetails Details)
@@ -97,7 +99,6 @@ public class BuyTicketCtrl implements Initializable {
         int totalPrice = (persons*details.Price)+luggage*25;
         lblPrice.setText("Total Price: "+String.valueOf(totalPrice)+"€");
         Context.getInstance().setPrice(totalPrice);
-
     }
     public void setData()
     {
@@ -108,20 +109,6 @@ public class BuyTicketCtrl implements Initializable {
             oDetails.add(String.valueOf(detail.FlightNr) + ": " + String.valueOf(detail.FlyFrom) + " - " + String.valueOf(detail.FlyTo));
         }
         ListTickets.setItems(oDetails);
-    }
-
-    @FXML
-    public void OnItemClicked(MouseEvent arg0)
-    {
-        String SelectedItem[] = ListTickets.getSelectionModel().selectedItemProperty().get().toString().split(":");
-        details = dao.getFlightDetails(Integer.valueOf(SelectedItem[0]));
-        ObservableList<String> oDetails = FXCollections.observableArrayList();
-        oDetails.add("Departure: "+details.LeaveHour.toString());
-        oDetails.add("Arrival: "+details.ArrivalHour.toString());
-        oDetails.add("FlightNr: "+String.valueOf(details.AirplaneNr));
-        oDetails.add("Price: "+String.valueOf(details.Price)+"€");
-        ListDetails.setItems(oDetails);
-        Context.getInstance().setFlightNr(Integer.getInteger(SelectedItem[0]));
     }
 
     @FXML
@@ -143,19 +130,9 @@ public class BuyTicketCtrl implements Initializable {
                     stage=(Stage) BookTicket.getScene().getWindow();
                     //load up OTHER FXML document
                     root = FXMLLoader.load(getClass().getResource("/View/Pay.fxml"));
-                    
-                    if(Integer.valueOf(Luggage.getText()) > 0)
-                        HasBagage = true;
-                    FlightNr = ListTickets.getSelectionModel().selectedItemProperty().get().toString().split(":");
-                    String nrOfPersons = Persons.getText();
-
-
-                    PayCtrl payCtrl = new PayCtrl();
-
 
                     Scene scene = new Scene(root);
                     stage.setScene(scene);
-                    //payCtrl.setParams(HasBagage, Integer.getInteger(FlightNr[0]),Integer.getInteger(nrOfPersons), Price);
                     stage.show();
                 }
                 else
