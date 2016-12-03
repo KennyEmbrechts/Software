@@ -63,11 +63,12 @@ public class DAO {
         Map<String, Object> properties = new HashMap<>();
         properties.put("type", "Passenger");
         properties.put("Name", passenger.Name);
+        properties.put("FirstName", passenger.FirstName);
         properties.put("HasLuggage", passenger.HasLuggage);
         properties.put("IsCheckedIn", passenger.IsCheckedIn);
         properties.put("FlightNr", passenger.FlightNr);
         properties.put("NrTickets", passenger.NrTickets);
-        int TicketNr = (passenger.Name+passenger.FlightNr).hashCode();
+        int TicketNr = (passenger.Name+passenger.FirstName+passenger.FlightNr).hashCode();
         document = database.getDocument(String.valueOf(TicketNr));
 
         try {
@@ -81,12 +82,10 @@ public class DAO {
         }
     }
 
-    public Passenger GetPassenger(String name, int flightNr)
+    public Passenger GetPassenger(int TicketNr)
     {
-        document = database.getDocument(String.valueOf((name+flightNr).hashCode()));
-
+        document = database.getDocument(String.valueOf(TicketNr));
         passenger = passenger.CastDocumentToPassenger(document);
-
         return passenger;
     }
 

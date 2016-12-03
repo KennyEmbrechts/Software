@@ -33,9 +33,9 @@ public class Main extends Application {
         dao.CreateFlightDetails(details4);
         //dao.getAll();*/
         List<FlightDetails> a = dao.getAllFlightDetails();
-        Passenger pas = dao.GetPassenger("AaAa", 2358);
+        /*Passenger pas = dao.GetPassenger(-2047565008);
         System.out.println(pas);
-
+        dao.getAll();*/
         launch(args);
     }
 }

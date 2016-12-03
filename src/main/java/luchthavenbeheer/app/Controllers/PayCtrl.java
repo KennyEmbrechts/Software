@@ -150,9 +150,9 @@ public class PayCtrl implements Initializable {
             NrOfPassengers = Context.getInstance().getNrOFPassengers();
             HasLuggage = Context.getInstance().getHasLuggage();
 
-            dao.CreatePassenger(new Passenger(HasLuggage, false, (Name.getText() + FirstName.getText()), FlightNr, NrOfPassengers));
+            int TicketNR = dao.CreatePassenger(new Passenger(HasLuggage, false, Name.getText(), FirstName.getText(), FlightNr, NrOfPassengers));
             ButtonWarning.setVisible(false);
-            infoBox("This is your ticket number please keep this safe at all times", "Ticket Number", "Please save your ticket number!");
+            infoBox("This is your ticket number: " + TicketNR + " please keep this safe at all times", "Ticket Number", "Please save your ticket number!");
             Stage stage;
             Parent root;
             //get reference to the button's stage
