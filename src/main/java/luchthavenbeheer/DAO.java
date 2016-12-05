@@ -89,6 +89,20 @@ public class DAO {
         return passenger;
     }
 
+    public Boolean UpdatePassenger(int TicketNr)
+    {
+        document = database.getDocument(String.valueOf(TicketNr));
+        Map<String, Object> properties = new HashMap<>();
+        properties.putAll(document.getProperties());
+        properties.put("IsCheckedIn", true);
+        try {
+            document.putProperties(properties);
+        } catch (CouchbaseLiteException e)
+        {
+            e.printStackTrace();
+        }
+    }
+
     //Flights
     public Boolean CreateFlightDetails(FlightDetails details)
     {

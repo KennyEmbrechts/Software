@@ -174,6 +174,4 @@ public class BuyTicketCtrl implements Initializable {
         alert.setContentText(infoMessage);
         alert.showAndWait();
     }
-
-
 }
