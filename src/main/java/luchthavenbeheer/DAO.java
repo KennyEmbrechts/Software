@@ -97,10 +97,12 @@ public class DAO {
         properties.put("IsCheckedIn", true);
         try {
             document.putProperties(properties);
+            return true;
         } catch (CouchbaseLiteException e)
         {
             e.printStackTrace();
         }
+        return false;
     }
 
     //Flights
