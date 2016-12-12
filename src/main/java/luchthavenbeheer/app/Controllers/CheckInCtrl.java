@@ -168,6 +168,16 @@ public class CheckInCtrl implements Initializable {
                 else
                 {
                     infoBox("You are succecfully checkedin", "Checkin", "Checkin message", Alert.AlertType.CONFIRMATION);
+                    Stage stage;
+                    Parent root;
+                    //get reference to the button's stage
+                    stage=(Stage) CheckInBtn.getScene().getWindow();
+                    //load up OTHER FXML document
+                    root = FXMLLoader.load(getClass().getResource("/View/Boarding.fxml"));
+
+                    Scene scene = new Scene(root);
+                    stage.setScene(scene);
+                    stage.show();
                 }
             }
             else
