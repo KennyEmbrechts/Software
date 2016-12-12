@@ -117,7 +117,7 @@ public class BoardingCtrl implements Initializable {
                 if (pas.FirstName.equals(FirstName.getText()) && pas.Name.equals(Name.getText())) {
                     FlightDetails fd;
                     fd = dao.getFlightDetails(pas.FlightNr);
-                    infoBox("You have reached your destination", "Destination reached", "You have reached:" + fd.FlyTo, Alert.AlertType.CONFIRMATION);
+                    infoBox("You have reached your destination", "Destination reached", "You have reached: " + fd.FlyTo, Alert.AlertType.CONFIRMATION);
                 }
                 else
                 {

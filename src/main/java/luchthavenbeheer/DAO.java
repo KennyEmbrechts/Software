@@ -92,9 +92,11 @@ public class DAO {
     public Boolean UpdatePassenger(int TicketNr)
     {
         document = database.getDocument(String.valueOf(TicketNr));
+        document.createRevision();
         Map<String, Object> properties = new HashMap<>();
         properties.putAll(document.getProperties());
         properties.put("IsCheckedIn", true);
+        document = database.getDocument(String.valueOf(TicketNr));
         try {
             document.putProperties(properties);
             return true;

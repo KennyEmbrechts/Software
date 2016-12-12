@@ -146,6 +146,7 @@ public class CheckInCtrl implements Initializable {
         if(pas.HasLuggage == true)
         {
             LuggageCheckedIn = true;
+            dao.UpdatePassenger(Integer.parseInt(TicketNr.getText()));
             infoBox("Luggage is succecfully checkedin", "luggage checkin", "Luggage checkin message", Alert.AlertType.CONFIRMATION);
         }
         else
