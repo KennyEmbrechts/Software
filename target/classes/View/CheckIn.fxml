@@ -17,14 +17,16 @@
          </font>
       </Label>
       <Button fx:id="SearchBtn" layoutX="398.0" layoutY="98.0" mnemonicParsing="false" onAction="#ClickedSearchBtn" text="Search" />
+      <Button fx:id="btnBack" layoutX="14.0" layoutY="21.0" mnemonicParsing="false" onAction="#ClickedBackBtn" text="Back" />
       <Pane fx:id="CheckInPane" layoutX="-1.0" layoutY="130.0" prefHeight="270.0" prefWidth="600.0">
          <children>
+            <TextField fx:id="FirstName" layoutX="300.0" layoutY="50.0" promptText="First name" />
             <ListView fx:id="Details" layoutX="14.0" layoutY="23.0" prefHeight="110.0" prefWidth="200.0" />
-            <TextField fx:id="Name" layoutX="346.0" layoutY="23.0" promptText="Name" />
-            <Button fx:id="LuggageCheckInBtn" layoutX="354.0" layoutY="107.0" mnemonicParsing="false" text="Check In Luggage" />
-            <Label fx:id="TicketNrLbl" layoutX="404.0" layoutY="70.0" text="TicketNr" />
-            <Button fx:id="CheckInBtn" layoutX="269.0" layoutY="192.0" mnemonicParsing="false" text="Check In" />
-            <Button fx:id="btnBack" layoutX="19.0" layoutY="-100" mnemonicParsing="false" onAction="#ClickedBackBtn" text="Back" />
+            <TextField fx:id="Name" layoutX="300.0" layoutY="23.0" promptText="Name" />
+            <Button fx:id="LuggageCheckInBtn" layoutX="354.0" layoutY="107.0" mnemonicParsing="false" onAction="#ClickedCheckinLuggageBtn" text="Check In Luggage" />
+            <Button fx:id="CheckInBtn" layoutX="269.0" layoutY="192.0" mnemonicParsing="false" onAction="#ClickedCheckinBtn" text="Check In" />
+            <Label fx:id="NameWarning" layoutX="460.0" layoutY="25.0" text="No valid name entered" textFill="RED" visible="false" />
+            <Label fx:id="FirstNameWarning" layoutX="460.0" layoutY="55.0" text="No valid name entered" textFill="RED" visible="false" />
          </children>
       </Pane>
       <Label fx:id="TicketNrCheck" layoutX="213.0" layoutY="102.0" text="The TicketNr is wrong" textFill="RED" visible="false" />

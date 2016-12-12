@@ -10,9 +10,9 @@ import javafx.scene.control.*;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
-import javafx.scene.image.ImageView;
 import javafx.stage.Stage;
 import luchthavenbeheer.DAO;
+import luchthavenbeheer.app.FlightDetails;
 import luchthavenbeheer.app.Passenger;
 import java.io.IOException;
 import java.net.URL;
@@ -113,19 +113,29 @@ public class BoardingCtrl implements Initializable {
         dao = new DAO();
         if(IsFlightNR) {
             pas = dao.GetPassenger(Integer.valueOf(TicketNr.getText()));
-            if (pas.IsCheckedIn)
+            if (pas.IsCheckedIn) {
+                if (pas.FirstName.equals(FirstName.getText()) && pas.Name.equals(Name.getText())) {
+                    FlightDetails fd;
+                    fd = dao.getFlightDetails(pas.FlightNr);
+                    infoBox("You have reached your destination", "Destination reached", "You have reached:" + fd.FlyTo, Alert.AlertType.CONFIRMATION);
+                }
+                else
+                {
+                    infoBox("Your name does not match your tickets name", "Checkin", "Checkin message", Alert.AlertType.ERROR);
+                }
+            }
+            else
             {
-
+                infoBox("You are not checkedin","Not CheckedIn", "not Chekedin", Alert.AlertType.ERROR);
             }
         }
     }
-    public static void infoBox(String infoMessage, String titleBar, String headerMessage, Alert.AlertType type, String Image)
+    public static void infoBox(String infoMessage, String titleBar, String headerMessage, Alert.AlertType type)
     {
         Alert alert = new Alert(type);
         alert.setTitle(titleBar);
         alert.setHeaderText(headerMessage);
         alert.setContentText(infoMessage);
-        alert.setGraphic(new ImageView(Image));
         alert.showAndWait();
     }
 }
