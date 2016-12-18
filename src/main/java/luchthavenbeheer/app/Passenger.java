@@ -33,16 +33,4 @@ public class Passenger
         NrTickets = Integer.valueOf(String.valueOf(document.getProperty("NrTickets")));
         return new Passenger(HasLuggage, IsCheckedIn, Name, FirstName, FlightNr, NrTickets);
     }
-
-	public void Checkin()
-	{
-	}
-	
-	public void LuggageCheckin()
-	{
-	}
-	
-	public void Boarding()
-	{
-	}
 }

@@ -136,6 +136,7 @@ public class CheckInCtrl implements Initializable {
             oDetails.add("Flightnumber: "+String.valueOf(detail.FlightNr));
             oDetails.add("Coming from: "+String.valueOf(detail.FlyFrom));
             oDetails.add("Arriving at: "+String.valueOf(detail.FlyTo)+" at "+ detail.ArrivalHour);
+            oDetails.add("Opperated by: " +  String.valueOf(detail.airline));
             Details.setItems(oDetails);
         }
     }

@@ -8,9 +8,6 @@ import java.util.Date;
 
 public class FlightDetails
 {
-	public enum Location{
-		Brussel, Zurich, Zagreb, Athene, NewYork, London
-	}
 	public Location FlyFrom;
 	public Location FlyTo;
 	public  int FlightNr;
@@ -19,11 +16,12 @@ public class FlightDetails
 	public String Pilot;
 	public int AirplaneNr;
 	public int Price;
+	public Airline airline;
 	public FlightDetails()
 	{
 
 	}
-    public FlightDetails(Location FlyFrom, Location FlyTo, int FlightNr, LocalDateTime LeaveHour, LocalDateTime ArrivalHour, String Pilot, int AirplaneNr, int Price)
+    public FlightDetails(Location FlyFrom, Location FlyTo, int FlightNr, LocalDateTime LeaveHour, LocalDateTime ArrivalHour, String Pilot, int AirplaneNr, int Price, Airline airline)
     {
         this.FlyFrom = FlyFrom;
         this.FlyTo = FlyTo;
@@ -33,26 +31,23 @@ public class FlightDetails
         this.Pilot = Pilot;
         this.AirplaneNr = AirplaneNr;
 		this.Price = Price;
+		this.airline = airline;
     }
 	public FlightDetails CastDocumentToFlightDetails(Document document)
 	{
-		String loc = String.valueOf(document.getProperty("FlightFrom"));
-		FlightDetails.Location FlightFrom = FlightDetails.Location.valueOf(loc);
-		FlightDetails.Location FlightTo = FlightDetails.Location.valueOf(String.valueOf(document.getProperty("FlightTo")));
+		Location FlightFrom = Location.valueOf(String.valueOf(document.getProperty("FlightFrom")));
+		Location FlightTo = Location.valueOf(String.valueOf(document.getProperty("FlightTo")));
 		LocalDateTime LeaveHour = LocalDateTime.parse((String)document.getProperty("LeaveHour"));
 		LocalDateTime ArrivalHour = LocalDateTime.parse((String)document.getProperty("ArrivalHour"));
 		String Pilot = (String)document.getProperty("Pilot");
 		int AirplaneNr = (int)document.getProperty("AirplaneNr");
 		int flightNr = (int)document.getProperty("FlightNr");
 		int Price = (int)document.getProperty("Price");
+		Airline airline = Airline.valueOf(String.valueOf(document.getProperty("Airline")));
 
 
 		FlightDetails flightDetails = new FlightDetails(FlightFrom,FlightTo, flightNr,
-				LeaveHour, ArrivalHour, Pilot, AirplaneNr, Price);
+				LeaveHour, ArrivalHour, Pilot, AirplaneNr, Price, airline);
 		return flightDetails;
 	}
-	public void ShowDetails()
-	{
-	}
-
 }

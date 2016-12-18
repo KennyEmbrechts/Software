@@ -11,6 +11,7 @@ import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.stage.Stage;
 import luchthavenbeheer.DAO;
+import luchthavenbeheer.app.Airline;
 import luchthavenbeheer.app.FlightDetails;
 import javafx.scene.control.Alert.AlertType;
 import java.io.IOException;
@@ -72,6 +73,7 @@ public class BuyTicketCtrl implements Initializable {
         oDetails.add("Arrival: "+details.ArrivalHour.toString());
         oDetails.add("FlightNr: "+String.valueOf(details.AirplaneNr));
         oDetails.add("Price: "+String.valueOf(details.Price)+"€");
+        oDetails.add("Opperated by: " +  String.valueOf(details.airline));
         ListDetails.setItems(oDetails);
         Context.getInstance().setFlightNr(FlightNr);
         });

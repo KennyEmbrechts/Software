@@ -13,6 +13,7 @@ import javafx.scene.control.ListView;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
 import luchthavenbeheer.DAO;
+import luchthavenbeheer.app.Airline;
 import luchthavenbeheer.app.FlightDetails;
 import java.io.IOException;
 import java.net.URL;
@@ -61,6 +62,7 @@ public class FlightDetailsCtrl implements Initializable {
         oDetails.add("Flightnumber: "+String.valueOf(detail.FlightNr));
         oDetails.add("Coming from: "+String.valueOf(detail.FlyFrom));
         oDetails.add("Arriving at: "+String.valueOf(detail.FlyTo)+" at "+ detail.ArrivalHour);
+        oDetails.add("Opperated by: " +  String.valueOf(detail.airline));
         lstDetails.setItems(oDetails);
     }
 }

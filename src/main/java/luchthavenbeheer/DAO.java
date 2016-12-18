@@ -120,6 +120,7 @@ public class DAO {
         properties.put("Pilot", details.Pilot);
         properties.put("AirplaneNr", details.AirplaneNr);
         properties.put("Price", details.Price);
+        properties.put("Airline", details.airline);
         document = database.getDocument(String.valueOf(details.FlightNr));
 
         try {

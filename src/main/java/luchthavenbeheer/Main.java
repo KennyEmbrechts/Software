@@ -5,9 +5,12 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
+import luchthavenbeheer.app.Airline;
 import luchthavenbeheer.app.FlightDetails;
+import luchthavenbeheer.app.Location;
 import luchthavenbeheer.app.Passenger;
 
+import java.time.LocalDateTime;
 import java.util.List;
 
 public class Main extends Application {
@@ -24,17 +27,17 @@ public class Main extends Application {
     public static void main(String[] args){
 
         DAO dao = new DAO();
-        /*FlightDetails details = new FlightDetails(FlightDetails.Location.Athene, FlightDetails.Location.Brussel, 1574, LocalDateTime.of(2016,12,13,20,15), LocalDateTime.of(2016,12,23,19,20), "Jan", 5987,80);
-        FlightDetails details2 = new FlightDetails(FlightDetails.Location.Athene, FlightDetails.Location.Zurich, 5874, LocalDateTime.of(2017,01,13,20,15), LocalDateTime.of(2016,01,23,19,20), "Jan", 5987,90);
-        FlightDetails details3 = new FlightDetails(FlightDetails.Location.Athene, FlightDetails.Location.Zagreb, 9854, LocalDateTime.of(2017,02,13,20,15), LocalDateTime.of(2016,02,23,19,20), "Jan", 5987,110);
-        FlightDetails details4 = new FlightDetails(FlightDetails.Location.Athene, FlightDetails.Location.NewYork, 2358, LocalDateTime.of(2017,03,13,20,15), LocalDateTime.of(2016,03,23,19,20), "Jan", 5987,75);
+        FlightDetails details = new FlightDetails(Location.Athene, Location.Brussel, 1574, LocalDateTime.of(2016,12,13,20,15), LocalDateTime.of(2016,12,23,19,20), "Jan", 5987,80, Airline.AirBoliv);
+        FlightDetails details2 = new FlightDetails(Location.Athene, Location.Zurich, 5874, LocalDateTime.of(2017,01,13,20,15), LocalDateTime.of(2016,01,23,19,20), "Jan", 5987,90, Airline.BonkAir);
+        FlightDetails details3 = new FlightDetails(Location.Athene, Location.Zagreb, 9854, LocalDateTime.of(2017,02,13,20,15), LocalDateTime.of(2016,02,23,19,20), "Jan", 5987,110, Airline.SPAir);
+        FlightDetails details4 = new FlightDetails(Location.Athene, Location.NewYork, 2358, LocalDateTime.of(2017,03,13,20,15), LocalDateTime.of(2016,03,23,19,20), "Jan", 5987,75, Airline.BonkAir);
         dao.CreateFlightDetails(details2);
         dao.CreateFlightDetails(details3);
         dao.CreateFlightDetails(details4);
-        //dao.getAll();*/
+        //dao.getAll();
         //List<FlightDetails> a = dao.getAllFlightDetails();
-        Passenger pas = dao.GetPassenger(-279657986);
-        System.out.println(pas.IsCheckedIn);
+        //Passenger pas = dao.GetPassenger(-279657986);
+        //System.out.println(pas.IsCheckedIn);
         dao.getAll();
         launch(args);
     }
