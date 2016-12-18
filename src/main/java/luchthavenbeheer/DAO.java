@@ -4,9 +4,10 @@ import com.couchbase.lite.*;
 import com.couchbase.lite.util.Log;
 import luchthavenbeheer.app.FlightDetails;
 import luchthavenbeheer.app.Passenger;
+
 import java.io.IOException;
 import java.util.*;
-import java.util.List;
+
 import static com.couchbase.lite.Document.TAG;
 
 public class DAO {
@@ -68,6 +69,7 @@ public class DAO {
         properties.put("IsCheckedIn", passenger.IsCheckedIn);
         properties.put("FlightNr", passenger.FlightNr);
         properties.put("NrTickets", passenger.NrTickets);
+        properties.put("Ticket", passenger.ticket);
         int TicketNr = (passenger.Name+passenger.FirstName+passenger.FlightNr).hashCode();
         document = database.getDocument(String.valueOf(TicketNr));
 

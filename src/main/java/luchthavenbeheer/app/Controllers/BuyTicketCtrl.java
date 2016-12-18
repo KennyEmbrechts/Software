@@ -9,11 +9,11 @@ import javafx.fxml.Initializable;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
+import javafx.scene.control.Alert.AlertType;
 import javafx.stage.Stage;
 import luchthavenbeheer.DAO;
-import luchthavenbeheer.app.Airline;
 import luchthavenbeheer.app.FlightDetails;
-import javafx.scene.control.Alert.AlertType;
+
 import java.io.IOException;
 import java.net.URL;
 import java.util.List;
@@ -92,13 +92,15 @@ public class BuyTicketCtrl implements Initializable {
         if(Luggage.getText().equals(""))
         {
             luggage = 0;
+            Luggage.setText("0");
             Context.getInstance().setHasLuggage(false);
         }
         else {
             luggage = Integer.valueOf(Luggage.getText());
             Context.getInstance().setHasLuggage(true);
         }
-        int totalPrice = (persons*details.Price)+luggage*25;
+        Context.getInstance().setLuggage(Integer.parseInt((Luggage.getText())));
+        float totalPrice = (persons*details.Price)+luggage*25;
         lblPrice.setText("Total Price: "+String.valueOf(totalPrice)+"€");
         Context.getInstance().setPrice(totalPrice);
     }

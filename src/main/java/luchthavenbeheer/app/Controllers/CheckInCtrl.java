@@ -1,7 +1,5 @@
 package luchthavenbeheer.app.Controllers;
 
-import javafx.beans.value.ChangeListener;
-import javafx.beans.value.ObservableValue;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -17,7 +15,6 @@ import luchthavenbeheer.DAO;
 import luchthavenbeheer.app.FlightDetails;
 import luchthavenbeheer.app.Passenger;
 
-import java.io.BufferedInputStream;
 import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;

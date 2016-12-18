@@ -8,14 +8,14 @@ public class Context {
         return instance;
     }
 
-    private int Price = 0;
+    private float Price = 0;
 
-    public void setPrice(int Price)
+    public void setPrice(float Price)
     {
         this.Price = Price;
     }
 
-    public int getPrice()
+    public float getPrice()
     {
         return Price;
     }
@@ -54,5 +54,17 @@ public class Context {
     public int getFlightNr()
     {
         return FlightNr;
+    }
+
+    private int Luggage;
+
+    public void setLuggage(int Luggage)
+    {
+        this.Luggage = Luggage;
+    }
+
+    public int getLuggage()
+    {
+        return Luggage;
     }
 }

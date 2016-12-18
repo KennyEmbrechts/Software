@@ -1,18 +1,21 @@
 package luchthavenbeheer.app.Controllers;
 
 
-import javafx.beans.value.ChangeListener;
-import javafx.beans.value.ObservableValue;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.scene.control.*;
+import javafx.scene.control.Alert;
+import javafx.scene.control.Button;
+import javafx.scene.control.Label;
+import javafx.scene.control.TextField;
 import javafx.stage.Stage;
 import luchthavenbeheer.DAO;
 import luchthavenbeheer.app.Passenger;
+import luchthavenbeheer.app.Ticket;
+
 import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
@@ -48,7 +51,7 @@ public class PayCtrl implements Initializable {
     private Boolean HasLuggage;
     private int FlightNr;
     private int NrOfPassengers;
-    private int Price;
+    private float Price;
 
     @Override
     public void initialize(URL fxmlFileLocation, ResourceBundle resources) {
@@ -68,10 +71,7 @@ public class PayCtrl implements Initializable {
         dao = new DAO();
 
         // Listen for TextField text changes
-        Name.textProperty().addListener(new ChangeListener<String>() {
-            @Override
-            public void changed(ObservableValue<? extends String> observable, String oldValue, String newValue) {
-
+        Name.textProperty().addListener((observable, oldValue, newValue) -> {
                 if(CheckFieldValues(Regex.Regexs.Name,Name))
                 {
                     NameWarning.setVisible(false);
@@ -80,12 +80,8 @@ public class PayCtrl implements Initializable {
                 {
                     NameWarning.setVisible(true);
                 }
-            }
         });
-        FirstName.textProperty().addListener(new ChangeListener<String>() {
-            @Override
-            public void changed(ObservableValue<? extends String> observable, String oldValue, String newValue) {
-
+        FirstName.textProperty().addListener((observable, oldValue, newValue) -> {
                 if(CheckFieldValues(Regex.Regexs.Name,FirstName))
                 {
                     FirstNameWarning.setVisible(false);
@@ -94,11 +90,8 @@ public class PayCtrl implements Initializable {
                 {
                     FirstNameWarning.setVisible(true);
                 }
-            }
         });
-        AccountNr.textProperty().addListener(new ChangeListener<String>() {
-            @Override
-            public void changed(ObservableValue<? extends String> observable, String oldValue, String newValue) {
+        AccountNr.textProperty().addListener((observable,oldValue, newValue) -> {
 
                 if(CheckFieldValues(Regex.Regexs.AccountNr,AccountNr))
                 {
@@ -108,12 +101,8 @@ public class PayCtrl implements Initializable {
                 {
                     AccountWarning.setVisible(true);
                 }
-            }
         });
-        SecurityNr.textProperty().addListener(new ChangeListener<String>() {
-            @Override
-            public void changed(ObservableValue<? extends String> observable, String oldValue, String newValue) {
-
+        SecurityNr.textProperty().addListener((observable, oldValue, newValue) -> {
                 if(CheckFieldValues(Regex.Regexs.FourDigitNr,SecurityNr))
                 {
                     SecurityNrWarning.setVisible(false);
@@ -122,7 +111,6 @@ public class PayCtrl implements Initializable {
                 {
                     SecurityNrWarning.setVisible(true);
                 }
-            }
         });
         Price = Context.getInstance().getPrice();
         PriceLbl.setText("Total Price: €" + Price);
@@ -150,7 +138,7 @@ public class PayCtrl implements Initializable {
             NrOfPassengers = Context.getInstance().getNrOFPassengers();
             HasLuggage = Context.getInstance().getHasLuggage();
 
-            int TicketNR = dao.CreatePassenger(new Passenger(HasLuggage, false, Name.getText(), FirstName.getText(), FlightNr, NrOfPassengers));
+            int TicketNR = dao.CreatePassenger(new Passenger(HasLuggage, false, Name.getText(), FirstName.getText(), FlightNr, NrOfPassengers, new Ticket(FlightNr,"Economy", Price, Context.getInstance().getLuggage())));
             ButtonWarning.setVisible(false);
             infoBox("This is your ticket number: " + TicketNR + " please keep this safe at all times", "Ticket Number", "Please save your ticket number!");
             Stage stage;

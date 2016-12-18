@@ -13,8 +13,8 @@ import javafx.scene.control.ListView;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
 import luchthavenbeheer.DAO;
-import luchthavenbeheer.app.Airline;
 import luchthavenbeheer.app.FlightDetails;
+
 import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;

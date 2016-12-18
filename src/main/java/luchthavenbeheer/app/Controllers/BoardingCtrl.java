@@ -6,7 +6,7 @@ import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.scene.control.*;
+import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
@@ -14,6 +14,8 @@ import javafx.stage.Stage;
 import luchthavenbeheer.DAO;
 import luchthavenbeheer.app.FlightDetails;
 import luchthavenbeheer.app.Passenger;
+import luchthavenbeheer.app.Plane;
+
 import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
@@ -45,6 +47,8 @@ public class BoardingCtrl implements Initializable {
     private Boolean IsFlightNR= false;
     private Passenger pas;
 
+    private Plane plane;
+
     @Override
     public void initialize(URL fxmlFileLocation, ResourceBundle resources){
         assert btnBack != null : "fx:id=\"BackBtn\" was not injected: check your FXML file 'simple.fxml'.";
@@ -57,6 +61,7 @@ public class BoardingCtrl implements Initializable {
         assert FirstNameWarning != null : "fx:id=\"FirstNameWarning\" was not injected: check your FXML file 'simple.fxml'.";
 
         regex = new Regex();
+        plane = new Plane();
 
         // Listen for TextField text changes
         TicketNr.textProperty().addListener((observable, oldValue, newValue)-> {
@@ -117,6 +122,7 @@ public class BoardingCtrl implements Initializable {
                 if (pas.FirstName.equals(FirstName.getText()) && pas.Name.equals(Name.getText())) {
                     FlightDetails fd;
                     fd = dao.getFlightDetails(pas.FlightNr);
+                    plane.setLuggage(pas.ticket.luggage);
                     infoBox("You have reached your destination", "Destination reached", "You have reached: " + fd.FlyTo, Alert.AlertType.CONFIRMATION);
                 }
                 else

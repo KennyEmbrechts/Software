@@ -2,18 +2,16 @@ package luchthavenbeheer.app;
 
 public class Ticket
 {
-	public int TicketNr;
 	public int FlightNr;
-	public Boolean IsPayed;
 	public String Class;
 	public float Price;
+	public int luggage;
 
-	public Ticket(int TicketNr, int FlightNr, Boolean IsPayed, String Class, float Price)
+	public Ticket(int FlightNr, String Class, float Price, int luggage)
 	{
-        this.TicketNr = TicketNr;
         this.FlightNr = FlightNr;
-        this.IsPayed = IsPayed;
         this.Class = Class;
         this.Price = Price;
+        this.luggage = luggage;
 	}
 }
