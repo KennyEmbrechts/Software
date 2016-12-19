@@ -16,7 +16,7 @@ public class Regex
 
         private final String regex;
 
-        private Regexs(final String regex) {
+        Regexs(final String regex) {
             this.regex = regex;
         }
 
@@ -28,10 +28,6 @@ public class Regex
 
     public Boolean CheckFieldValues(Regex.Regexs reg, TextField txt)
     {
-        if(Pattern.matches(reg.toString(), txt.getText()))
-        {
-            return true;
-        }
-        return false;
+        return Pattern.matches(reg.toString(), txt.getText());
     }
 }

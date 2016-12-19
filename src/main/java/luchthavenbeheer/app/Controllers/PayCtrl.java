@@ -176,11 +176,7 @@ public class PayCtrl implements Initializable {
 
     public Boolean CheckFieldValues(Regex.Regexs reg, TextField txt)
     {
-        if(Pattern.matches(reg.toString(), txt.getText()))
-        {
-            return true;
-        }
-        return false;
+        return Pattern.matches(reg.toString(), txt.getText());
     }
 
     public static void infoBox(String infoMessage, String titleBar, String headerMessage)
