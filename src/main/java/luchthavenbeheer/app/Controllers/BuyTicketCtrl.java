@@ -64,18 +64,20 @@ public class BuyTicketCtrl implements Initializable {
                 setPrice(details);
         });
 
+
         ListTickets.getSelectionModel().selectedItemProperty().addListener((observable, oldValue, newValue) -> {
-        String SelectedItem[] = String.valueOf(newValue).split(":");
-        FlightNr = Integer.parseInt(SelectedItem[0]);
-        details = dao.getFlightDetails(FlightNr);
-        ObservableList<String> oDetails = FXCollections.observableArrayList();
-        oDetails.add("Departure: "+details.LeaveHour.toString());
-        oDetails.add("Arrival: "+details.ArrivalHour.toString());
-        oDetails.add("FlightNr: "+String.valueOf(details.AirplaneNr));
-        oDetails.add("Price: "+String.valueOf(details.Price)+"€");
-        oDetails.add("Opperated by: " +  String.valueOf(details.airline));
-        ListDetails.setItems(oDetails);
-        Context.getInstance().setFlightNr(FlightNr);
+            String SelectedItem[] = String.valueOf(newValue).split(":");
+            FlightNr = Integer.parseInt(SelectedItem[0]);
+            details = dao.getFlightDetails(FlightNr);
+            ObservableList<String> oDetails = FXCollections.observableArrayList();
+            oDetails.add("Departure: "+details.LeaveHour.toString());
+            oDetails.add("Arrival: "+details.ArrivalHour.toString());
+            oDetails.add("FlightNr: "+String.valueOf(details.AirplaneNr));
+            oDetails.add("Price: "+String.valueOf(details.Price)+"€");
+            oDetails.add("Opperated by: " +  String.valueOf(details.airline));
+            ListDetails.setItems(oDetails);
+            Context.getInstance().setFlightNr(FlightNr);
+            setPrice(details);
         });
     }
     public void setPrice(FlightDetails Details)

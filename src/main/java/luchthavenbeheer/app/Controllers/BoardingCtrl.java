@@ -45,7 +45,7 @@ public class BoardingCtrl implements Initializable {
     private DAO dao;
     private Regex regex;
     private Boolean IsFlightNR= false;
-    private Passenger pas;
+    private Passenger pas=null;
 
     private Plane plane;
 
@@ -124,17 +124,34 @@ public class BoardingCtrl implements Initializable {
                     fd = dao.getFlightDetails(pas.FlightNr);
                     plane.setLuggage(pas.ticket.luggage);
                     infoBox("You have reached your destination", "Destination reached", "You have reached: " + fd.FlyTo, Alert.AlertType.CONFIRMATION);
+
+                    Stage stage;
+                    Parent root;
+                    //get reference to the button's stage
+                    stage=(Stage) btnBack.getScene().getWindow();
+                    //load up OTHER FXML document
+                    root = FXMLLoader.load(getClass().getResource("/View/HomePage.fxml"));
+
+                    Scene scene = new Scene(root);
+                    stage.setScene(scene);
+                    stage.show();
                 }
                 else
                 {
-                    infoBox("Your name does not match your tickets name", "Checkin", "Checkin message", Alert.AlertType.ERROR);
+                    infoBox("Your name does not match your tickets name", "Check in", "Check in message", Alert.AlertType.ERROR);
                 }
             }
             else
             {
-                infoBox("You are not checkedin","Not CheckedIn", "not Chekedin", Alert.AlertType.ERROR);
+                infoBox("You are not checked in","Not Checked in", "not Checked in", Alert.AlertType.ERROR);
             }
         }
+        else
+        {
+            infoBox("Wrong ticket number", "You have entered the wrong ticket number, please provide us with the correct one","Wrong ticket number entered", Alert.AlertType.WARNING);
+        }
+
+
     }
     public static void infoBox(String infoMessage, String titleBar, String headerMessage, Alert.AlertType type)
     {
