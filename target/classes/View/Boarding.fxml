@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.Pane?>
+<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8.0.112" xmlns:fx="http://javafx.com/fxml/1" fx:controller="luchthavenbeheer.app.Controllers.BoardingCtrl">
+    <children>
+        <Button fx:id="btnBack" layoutX="10.0" layoutY="10.0" mnemonicParsing="false" onAction="#ClickedBackBtn" text="Back" />
+        <Button fx:id="btnBoard" layoutX="500.0" layoutY="350.0" mnemonicParsing="false" onAction="#ClickedBoardBtn" text="Board" />
+        <TextField fx:id="FirstName" layoutX="300.0" layoutY="160.0" promptText="First name" />
+        <TextField fx:id="Name" layoutX="300.0" layoutY="125.0" promptText="Name" />
+        <Label fx:id="NameWarning" layoutX="470.0" layoutY="125.0" text="No valid name entered" textFill="RED" visible="false" />
+        <Label fx:id="FirstNameWarning" layoutX="470.0" layoutY="160.0" text="No valid name entered" textFill="RED" visible="false" />
+        <Label fx:id="TicketNrCheck" layoutX="213.0" layoutY="102.0" text="The TicketNr is wrong" textFill="RED" visible="false" />
+        <TextField fx:id="TicketNr" layoutX="13.0" layoutY="98.0" prefHeight="27.0" prefWidth="186.0" promptText="TicketNr" />
+   </children>
+</Pane>
