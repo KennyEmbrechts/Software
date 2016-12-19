@@ -139,18 +139,34 @@ public class PayCtrl implements Initializable {
             HasLuggage = Context.getInstance().getHasLuggage();
 
             int TicketNR = dao.CreatePassenger(new Passenger(HasLuggage, false, Name.getText(), FirstName.getText(), FlightNr, NrOfPassengers, new Ticket(FlightNr,"Economy", Price, Context.getInstance().getLuggage())));
-            ButtonWarning.setVisible(false);
-            infoBox("This is your ticket number: " + TicketNR + " please keep this safe at all times", "Ticket Number", "Please save your ticket number!");
-            Stage stage;
-            Parent root;
-            //get reference to the button's stage
-            stage=(Stage) PayBtn.getScene().getWindow();
-            //load up OTHER FXML document
-            root = FXMLLoader.load(getClass().getResource("/View/HomePage.fxml"));
+            if(TicketNR==-1)
+            {
+                infoBox("You have already bought tickets for this flight","FATAL ERROR","Invalid input");
+                Stage stage;
+                Parent root;
+                //get reference to the button's stage
+                stage = (Stage) PayBtn.getScene().getWindow();
+                //load up OTHER FXML document
+                root = FXMLLoader.load(getClass().getResource("/View/BuyTicket.fxml"));
 
-            Scene scene = new Scene(root);
-            stage.setScene(scene);
-            stage.show();
+                Scene scene = new Scene(root);
+                stage.setScene(scene);
+                stage.show();
+            }
+            else {
+                ButtonWarning.setVisible(false);
+                infoBox("This is your ticket number: " + TicketNR + " please keep this safe at all times", "Ticket Number", "Please save your ticket number!");
+                Stage stage;
+                Parent root;
+                //get reference to the button's stage
+                stage = (Stage) PayBtn.getScene().getWindow();
+                //load up OTHER FXML document
+                root = FXMLLoader.load(getClass().getResource("/View/HomePage.fxml"));
+
+                Scene scene = new Scene(root);
+                stage.setScene(scene);
+                stage.show();
+            }
         }
         else
         {
